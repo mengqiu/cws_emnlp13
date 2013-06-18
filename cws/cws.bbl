@@ -1,0 +1,12 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Sun \bgroup et al.\egroup }2013]{Sun:2013:IPM}
+Xu~Sun, Yaozhong Zhang, Takuya Matsuzaki, Yoshimasa Tsuruoka, and Jun'Ichi
+  Tsujii.
+\newblock 2013.
+\newblock Probabilistic {C}hinese word segmentation with non-local information
+  and stochastic training.
+\newblock {\em Journal of Information Processing and Management},
+  49(3):626--636.
+
+\end{thebibliography}
