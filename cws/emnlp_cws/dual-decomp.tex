@@ -1,0 +1,8 @@
+\section{Dual-Decomposition}
+
+Dual decomposition offers a ideal framework for combining these two sources of signals without incurring high cost in model complexity (in contrast to \cite{Sun:2009:HLT-NAACL}) or decoding efficiency (in contrast to bagging in \cite{Wang:2006:SIGHAN,Sun:2010:COLING}).
+DD has been successfully applied to similar situations where we want to combine local model with global models, for example, in dependency parsing \cite{Koo:2010:EMNLP}), bilingual sequence tagging \cite{Wang:2013:ACL} and word alignment \cite{}.  
+Give a brief description of DD algorithm, focus on the intuition. See \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL} for a good short introduction example.
+Refer users to \cite{Rush:2012:JAIR} for a full tutorial on dual decomp.
+The modification to Viterbi decoding is exactly the same as in \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL}. The modification to the beam-search is similar, each time we extend a hypothesis with a new character, depending if the new character is appended to the last word or starting a new word, the corresponding DD penalty is factored into the score for the new hypothesis. 
+

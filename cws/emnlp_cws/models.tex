@@ -1,0 +1,13 @@
+\section{Char-based vs. Word-based Segmenters}
+
+\subsection{Char-based models}
+Describe models that treat CWS as a character sequence tagging task (first proposed by \cite{Xue:2003:IJCLCLP}), widely adopted and most commonly used these days.
+Give the equation of CRF (see \cite{Tseng:2005:SIGHAN}). Briefly describe the features and point out how some of them can be expected to generalize well to OOV words (e.g. suffix and prefix features).
+
+\subsection{Word-based models}
+See \cite{Sun:2010:COLING} for a good description. We used the perceptron based model proposed by \cite{Zhang:2007:ACL}, give the equation of the perceptron, and describe the features. Point out how some of these features basically directly capture the training lexicon.
+
+\subsection{Relative Strength and Weakness}
+Char-based CRF models are better at generalizing over to OOV words (thus higher OOV recall).  (NOTE: 6 out of 8 datasets on test, CRF has better OOV recall, but we should defer to talk about this in the results section). But as a tradeoff, it generates more inconsistent segmentation, and creates lots of spurious words.
+ The advantage of Word-based segmenters are that they are more consistent with the training lexicon, words seen in training lexicon are not likely to be segmented into many new ways; disadvantage is that it doesn't generalize well to OOV. Also exact inference is difficult, need to resolve to approximate decoding algorithms such as beam-searching.
+ 
