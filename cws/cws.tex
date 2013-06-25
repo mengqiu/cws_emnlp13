@@ -73,9 +73,38 @@ Cite \cite{Sun:2013:IPM}.
 
 \section{Introduction}
 
+\begin{itemize}
+\item CWS is essential for many downstream applications and its performance has direct impacts
+\item Two primary approaches: character-based and word-based
+\item Character based includes work like:
+\item Word based includes work like:
+\item In both cases out-of-vocabulary recall is a problem, but char-based sequence models win
+\item Solution has been proposed: mix models
+\item Existing work (Sun paper?) trains many models and uses voting
+\item We propose a simpler and more direct solution to model mixing: dual decomp to have two simultaneous mutually informative models
+\end{itemize}
+
+\section{Methodology}
+
+\begin{itemize}
+\item TODO: Work on this section together - explain dual decomp in this context in a simple way
+\item proposal: if Rob can understand the methodology then your average non-dual-decomp expert will understand it
+\end{itemize}
+
 \section{Experiments}
 
+\subsection{Accuracy}
+\begin{itemize}
+\item show that this model does better than existing work
+\item biggest win is on R$_{\mathrm{oov}}$
+\end{itemize}
 
+
+\subsection{Efficiency}
+\begin{itemize}
+\item show that this model is faster / simpler / etc than existing work
+\item important that methodology section is clear enough that other people could implement this
+\end{itemize}
 
 
 
