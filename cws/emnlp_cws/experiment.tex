@@ -1,0 +1,14 @@
+\section{Experiments}
+
+Give URL for the Stanford CRF segmenter. The perceptron-based word segmenter is a re-implementation of \cite{Zhang:2007:ACL}.
+For development data, we used:
+Training: CTB section 1-270  400-931 1001-115;   Dev: CTB section 271-300.
+
+Hyper-parameters tuned on the dev set.
+Perceptron: 10 iterations of training. 
+CRF: L2-regularization Sigma set to 3.
+Dual-decomp: initial step size set to 0.1, 100 iterations. 
+
+\subsection{Dataset}
+Give description of the SIGHAN 2003 \cite{Sproat:2003:SIGHAN} and 2005 \cite{Emerson:2005:SIGHAN} bake-off datasets. 
+List a table of the corpora names, size of training, testing, etc, similar to \cite{Sun:2010:COLING}.
