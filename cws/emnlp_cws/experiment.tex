@@ -12,3 +12,33 @@ Dual-decomp: initial step size set to 0.1, 100 iterations.
 \subsection{Dataset}
 Give description of the SIGHAN 2003 \cite{Sproat:2003:SIGHAN} and 2005 \cite{Emerson:2005:SIGHAN} bake-off datasets. 
 List a table of the corpora names, size of training, testing, etc, similar to \cite{Sun:2010:COLING}.
+
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{ l | l | c | c | c | c | c   }
+%\cline{2-10}
+%\hline
+% &   \multicolumn{1}{|c}{Models} & \multicolumn{1}{c}{$\lambda$} & \multicolumn{1}{c|}{No. of experts} & {P} & {R} & {F$_1$}   & \multicolumn{1}{c}{P} & \multicolumn{1}{c}{R} & \multicolumn{1}{c}{F$_1$}   \\
+\hline
+    \multicolumn{2}{c}{}  &  \multicolumn{1}{c}{\#W.T.} &  \multicolumn{1}{c}{\#W} &  \multicolumn{1}{c}{\#C.T.}    & \multicolumn{1}{c}{\#C}   &  \multicolumn{1}{c}{OOV}  \\ 
+\hline
+\multirow{4}{*}{2005}  & AS      & -  &  -  & -  &  - & 4.3   \\
+& MS      & 88K & 2.3M & 5K & 4.1M & 2.6 \\
+& PU      &  55k & 1.1M & 5K & 1.8M & 5.8  \\
+& CU      & 69K  & 1.5M& 5K & 2.4M & 7.4 \\
+\hline
+\multirow{3}{*}{2003} & AS  &  - & - & - & - & 2.2 \\
+& PU  &  - & - & - & - & 6.9 \\
+& CU  & - & - & - & - & 7.1  \\
+%\hline
+%\multirow{4}{*}{CTB}  &  Best03  &  \textbf{0.886}  & 0.875 &  \textbf{0.881} & 0.181 & 0.644  & \textbf{0.927} \\
+%& PcpTr       & 0.869 & 0.865 & 0.867 & 0.181 & 0.680  & 0.910 \\
+%& PcpTr & 0.865 & 0.871 & 0.868 & 0.181 & 0.660 & 0.910 \\
+%& DD  & 0.876 & \textbf{0.878} & 0.877 & 0.181 & \textbf{69.2} & 0.917  \\
+
+\end{tabular} 
+\caption{Results on SIGHAN 2005 and 2003 datasets. }\label{tbl:results}
+\end{small}
+\end{table}

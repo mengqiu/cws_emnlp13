@@ -1,0 +1,78 @@
+\section{Results}
+
+Reformat the table so it fits in a single column. 
+The OOV rates should be moved out of this table and put in the data description tables in Experiment section Dataset subsection.
+
+\begin{table}
+\centering
+\begin{small}
+\begin{tabular}{ l | l | c | c | c | c | c   }
+\multicolumn{7}{c}{\large{SIGHAN 2005}} \\
+%\cline{2-10}
+%\hline
+% &   \multicolumn{1}{|c}{Models} & \multicolumn{1}{c}{$\lambda$} & \multicolumn{1}{c|}{No. of experts} & {P} & {R} & {F$_1$}   & \multicolumn{1}{c}{P} & \multicolumn{1}{c}{R} & \multicolumn{1}{c}{F$_1$}   \\
+\hline
+    \multicolumn{2}{c}{}  &  \multicolumn{1}{c}{P} &  \multicolumn{1}{c}{P}  & \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c|}{R$_{\mathrm{oov}}$}    &  \multicolumn{1}{c}{R$_{\mathrm{iv}}$}   \\ 
+\hline
+\multirow{4}{*}{AS} &  CRF                                                        & 95.2 &   93.6 & 94.4  &  58.9 & 96.9 \\
+ & PCPT                                       & 95.8 & 95.0 & 95.4  & 69.5 & 97.0 \\ 
+& DD                                       & 95.9 & 94.9 & {95.4}  & {67.7} & {97.2} \\
+& Best05      & 95.2 &  {95.1} & 95.2 &   69.6 &  96.3 \\
+& Sun09      &  -   & -  & -  &  -  & - \\
+& Sun10      & -   & -  & 95.2  &   -  & - \\
+
+\hline
+
+\multirow{4}{*}{MS} &  CRF        &  96.4 &   96.6 &  96.5  & 71.3 & 97.1 \\
+& PCPT &  97.0 &  97.2 &  97.1  & 74.6 & 97.6 \\
+& DD & {97.3} &  {97.4} &  {97.4}  & {76.0} & {97.9} \\
+& Best05      & 96.2  & 96.6 &  96.4  &   71.7 &   96.8 \\
+& Sun09      & 97.3   & 97.3  & 97.3  &   72.2  & - \\
+& Sun10      & -   & -  & 96.9  &   -  & - \\
+\hline
+
+\multirow{4}{*}{PU} &   CRF        & 94.6 &	95.3 & 94.9  &   77.8 &  95.6 \\
+& PCPT  & 94.1 & 95.5	& 94.8  &  76.7 &  95.2 \\
+& DD  & 94.8 & {95.7} & {95.3}  &  {78.7} &95.8 \\
+& Best05       & {95.3}  &      94.6 &  95.0   &  63.6 &  {97.2} \\
+& Sun09      & 95.6   & 94.8  & 95.2  &   77.8  & - \\
+& Sun10      & -   & -  & 95.2  &   -  & - \\
+\hline
+
+\multirow{4}{*}{CU}  & CRF       & 94.7 & 94.0 &  94.3  & {76.1} & 96.2 \\
+& PCPT & 94.3 & 94.0 & 94.2  & 71.7  & 96.1  \\
+& DD & {95.0} & 94.4 & {94.7}  & {75.3} & {96.5}  \\
+& Best05      &  94.1 &  {94.6} & 94.3  & 69.8 & 96.1 \\
+& Sun09      & 94.7   & 94.4  & 94.6  &   68.8  & - \\
+& Sun10      & -   & -  & 95.6  &   -  & - \\
+\hline
+
+\multicolumn{7}{c}{} \\
+\multicolumn{7}{c}{\large{SIGHAN 2003}} \\
+\hline
+
+\multirow{4}{*}{AS} & CRF    & 96.9 & 96.9 & 96.9  & 74.8 &  97.4 \\
+& PCPT &  96.7 & 96.7 & 96.7  & 72.9  & 97.2 \\
+& DD & {97.0} & {97.1} & {97.1}  & {77.5}  & 97.5 \\
+ &  Best03     & 96.6     & 95.6 &  96.1  & 36.4 &  {98.0} \\
+\hline
+\multirow{4}{*}{MS}  & CRF     &  95.4 & 95.2 & 95.3  & 80.3	 & 96.5 \\
+& PCPT &  94.9 & 95.2 & 95.0  & 79.0  & 96.0 \\
+& DD &  95.4 & {95.4} & {95.4}	  & {80.6} & 96.5 \\
+&  Best03        &   {96.2} &   94.0&  95.1  & 72.4 & {97.9} \\
+\hline
+\multirow{4}{*}{PU} & CRF       &  94.4 & 93.9 & 94.1   & 74.1   & 95.9 \\
+& PCPT &  94.4 & 94.5 & 94.5   & 73.0  &  96.0 \\
+& DD &  {95.0} & {94.9} & {94.9}  & {75.4} &  96.5 \\
+&  Best03   &  94.7   & 93.4  & 94.0   &  62.5  &  {97.2} \\
+%\hline
+%\multirow{4}{*}{CTB}  &  Best03  &  {0.886}  & 0.875 &  {0.881} & 0.181 & 0.644  & {0.927} \\
+%& PCPT       & 0.869 & 0.865 & 0.867 & 0.181 & 0.680  & 0.910 \\
+%& PCPT & 0.865 & 0.871 & 0.868 & 0.181 & 0.660 & 0.910 \\
+%& DD  & 0.876 & {0.878} & 0.877 & 0.181 & {69.2} & 0.917  \\
+
+\end{tabular} 
+\caption{Results on SIGHAN 2005 and 2003 datasets. }\label{tbl:results}
+\end{small}
+\end{table}
+
