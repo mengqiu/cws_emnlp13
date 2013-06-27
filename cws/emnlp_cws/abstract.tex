@@ -1,3 +1,4 @@
 \begin{abstract}
-
+There are two dominant approaches to Chinese word segmentation problem: word-based and character-based. They each have their own strengths and weaknesses. 
+Word-based approaches are better at capturing longer context dependencies, and achieve higher segmentation consistency, whereas character-based approaches model the internal structures of words and can capture more out-of-vocabulary words. It is an intuitive idea to find methods to combine these approaches. Past efforts in combing word and character-based segmenters involve either training many instances of segmenters and polling their results, or designing complex latent-variable methods that incur heavy computational costs. In this paper, we propose an effective joint decoding method using dual decomposition, which does not require any additional training. Our method is simple and easy to implement, and achieves best reported results on 6 out of 7 standard SIGHAN evaluation datasets.
 \end{abstract}
