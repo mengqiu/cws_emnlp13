@@ -1,16 +1,112 @@
 \section{Discussion}
 
-In this section we talked about detailed consistency analysis and maybe give some examples.
+%In this section we talked about detailed consistency analysis and maybe give some examples.
+
 \subsection{Dual decomposition convergence}
 Plot the histogram of the number of iterations it takes to converge, and percentage of optimality. 
 
-\subsection{consistency}
+\subsection{Consistency}
 
-give results of the consistency analysis
+\cite{Chang:2008:ACL} have shown that increased segmentation consistency is correlated with better machine translation performance. Following their method for calculating the conditional entropy of a segmentation system, we see in Table [insert table] that our dual decomposition method achieves the most consistent results on 6 out of 7 datasets.
 
-\subsection{oracle}
+Consistency Results, Sighan 2003: 
 
-Give results of the oracle experiment
+as crf
+0.0428091404101
+as pct
+0.0441475626702
+as dd
+0.042168035925
+cityu crf
+0.0946373294134
+cityu pct
+0.10025983369
+cityu dd
+0.0867128300158
+ctb crf
+0.174004652166
+ctb pct
+0.18632727645
+ctb dd
+0.165767655651
+pku crf
+0.0423983535204
+pku pct
+0.0543269973345
+pku dd
+0.045000565176
+
+
+Consistency Results, Sighan 2005:
+
+as crf
+0.0718479895225
+as pct
+0.0681887138263
+as dd
+0.0624082516494
+cityu crf
+0.0660880615807
+cityu pct
+0.0742624297
+cityu dd
+0.0627869624389
+msr crf
+0.0755273737469
+msr pct
+0.064051889613
+msr dd
+0.0558050161967
+pku crf
+0.0892311495453
+pku pct
+0.0998921318846
+pku dd
+0.0868198134889
+
+
+\subsection{Oracle}
+
+Following \cite{Sun:2010:COLING}, we run an oracle experiment to estimate the upper bound of improvement possible via system combination to further contextualize our results. 
+
+To do so, we combine our two baselines with the gold-standard segmentation. Each character in the test set is labeled with three \emph{B} or \emph{I} tags, \emph{B} when it begins a word and \emph{I} when it is word-medial or word-final, according to our two baselines and the gold standard. We then create oracle labels by majority vote: if the baselines agree, their label is used; if they disagree, the gold label is used.
+
+The results of this oracle experiment, shown in Table [insert table], show that [what do they show? DD approaches the upper bound possible?]
+
+% this is here to know what each column means in the output below
+%=== TOTAL INSERTIONS:	75
+%=== TOTAL DELETIONS:	84
+%=== TOTAL SUBSTITUTIONS:	783
+%=== TOTAL NCHANGE:	942
+%=== TOTAL TRUE WORD COUNT:	11989
+%=== TOTAL TEST WORD COUNT:	11980
+%=== TOTAL TRUE WORDS RECALL:	0.928
+%=== TOTAL TEST WORDS PRECISION:	0.928
+%=== F MEASURE:	0.928
+%=== OOV Rate:	0.022
+%=== OOV Recall Rate:	0.810
+%=== IV Recall Rate:	0.930
+Scoring Oracle Output, Sighan 2003
+for as
+	sighan2003/as.oracle	75	84	783	942	11989	11980	0.928	0.928	0.928	0.022	0.810	0.930
+for cityu
+	sighan2003/cityu.oracle	402	333	2364	3099	35087	35156	0.923	0.921	0.922	0.071	0.824	0.931
+for ctb
+	sighan2003/ctb.oracle	920	1005	4490	6415	39921	39836	0.862	0.864	0.863	0.181	0.773	0.882
+for pku
+	sighan2003/pku.oracle	186	187	1593	1966	17194	17193	0.896	0.897	0.897	0.069	0.834	0.901
+
+Scoring Oracle Output, Sighan 2003
+for as
+	sighan2005/as.oracle	1855	726	9980	12561	122610	123739	0.913	0.904	0.908	0.043	0.722	0.921
+for cityu
+	sighan2005/cityu.oracle	577	371	3038	3986	40936	41142	0.917	0.912	0.914	0.074	0.817	0.925
+for msr // currently broken
+	sighan2005/msr.oracle	81	107	1066	1254	10987	10961	0.893	0.895	0.894	0.025	0.584	0.901
+for pku
+	sighan2005/pku.oracle	800	1661	9646	12107	104372	103511	0.892	0.899	0.895	0.058	0.815	0.896
+
 
 \subsection{Error analysis}
+% this makes sense, i will do this tomorrow
 Maybe look at cases where the model choose the worse of the two instead of the better of the two. See if there are patterns or insights we can draw. Not very important for a short paper.

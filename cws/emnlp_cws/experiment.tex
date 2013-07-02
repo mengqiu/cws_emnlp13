@@ -1,6 +1,9 @@
 \section{Experiments}
 
-Give URL for the Stanford CRF segmenter. The perceptron-based word segmenter is a re-implementation of \cite{Zhang:2007:ACL}.
+In this work, we employ two baseline models --- a character-based CRF and a word-based perceptron --- and test the performance of jointly decoding these baseline systems with dual decomposition. For our character-based CRF, we use the open-source Stanford CRF segmenter described in \cite{Tseng:2005:SIGHAN}.\footnote{http://nlp.stanford.edu/software/segmenter.shtml}
+For our word-based perceptron, we use a reimplementation of \cite{Zhang:2007:ACL}.
+
+% question: what is the relationship between this dev data and that used in sighan2003/2005?
 For development data, we used:
 Training: CTB section 1-270  400-931 1001-115;   Dev: CTB section 271-300.
 

@@ -14,6 +14,8 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{multirow}
+\usepackage{CJKutf8}
+
 
 %\input macros
 
@@ -33,19 +35,21 @@
 
 \begin{document}
 \maketitle
+\begin{CJK}{UTF8}{gbsn} % use CJK input
 
 \input{abstract} 
 \input{introduction} \label{sec:intro}
-\input{models} \label{sec:models}
+\input{relatedwork} \label{sec:relatedwork}
+%\input{models} \label{sec:models}
 \input{dual-decomp} \label{sec:dual-decomp}
 \input{experiment} \label{sec:experiment}
 \input{results} \label{sec:results}
 \input{discussion} \label{sec:discussion}
-\input{relatedwork} \label{sec:relatedwork}
+%\input{relatedwork} \label{sec:relatedwork}
 \input{conclusion} \label{sec:conclusion}
 
 
 \bibliographystyle{naaclhlt2013}
 \bibliography{emnlp_cws}
-
+\end{CJK}
 \end{document}
