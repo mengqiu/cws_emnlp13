@@ -11,17 +11,24 @@ Common linguistic features include character n-grams and morphological suffix/pr
 
 \subsection{Word-based Models}
 
-See \cite{Sun:2010:COLING} for a good description. We used the perceptron based model proposed by \cite{Zhang:2007:ACL}, give the equation of the perceptron, and describe the features. Point out how some of these features basically directly capture the training lexicon.
+Initially word-based segmentation approaches employed simple heuristics like dictionary-lookup maximum matching \cite{Chen:1992:ACL}, contemporary approaches use machine learning techniques to solve an argmax problem of the form:
+
+% add eq
+
+
+
+%See \cite{Sun:2010:COLING} for a good description. We used the perceptron based model proposed by \cite{Zhang:2007:ACL}, give the equation of the perceptron, and describe the features. Point out how some of these features basically directly capture the training lexicon.
 %
 %\subsection{Relative Strength and Weakness}
 %Char-based CRF models are better at generalizing over to OOV words (thus higher OOV recall).  (NOTE: 6 out of 8 datasets on test, CRF has better OOV recall, but we should defer to talk about this in the results section). But as a tradeoff, it generates more inconsistent segmentation, and creates lots of spurious words.
 % The advantage of Word-based segmenters are that they are more consistent with the training lexicon, words seen in training lexicon are not likely to be segmented into many new ways; disadvantage is that it doesn't generalize well to OOV. Also exact inference is difficult, need to resolve to approximate decoding algorithms such as beam-searching.
 % 
 
-\subsection{Mixing Models} various mixing approaches have been proposed to combine the merits of these two classes of models \cite{Wang:2006:SIGHAN,Lin:2009:CICLing,Sun:2009:HLT-NAACL,Sun:2010:COLING,Wang:2010:COLING}. 
+\subsection{Mixing Models} Since the two types of models described above have different strengths and make different kinds of errors, various mixing approaches have been proposed to combine them \cite{Wang:2006:SIGHAN,Lin:2009:CICLing,Sun:2009:HLT-NAACL,Sun:2010:COLING,Wang:2010:COLING}. 
 
-\cite{Sun:2009:HLT-NAACL} is the most similar in that they also try to directly combine two segmenters -- one char-based and one word-based. But they do it through segmenter bagging, which would require training up 50 or more individual segmenters and poll their results at test time, significantly increases training and testing effort, not practical.
-\cite{Sun:2009:HLT-NAACL} presented a latent-variable model. very complicated, hard to train. our method is much simpler and works better than their method.
 
 \cite{Lin:2009:CICLing} and \cite{Wang:2006:SIGHAN} both try to incorporate a character-based local classifier model (MaxEnt) with a language model that captures more word-level context.
 In order to bring in bigram language model,  \shortcite{Lin:2009:CICLing} gave a heuristic decoding method that involves various conditioning and back-off; \shortcite{Wang:2006:SIGHAN} gave a modified Viterbi algorithm actually has complexity of $O(T^3)$. 
+
+\cite{Sun:2009:HLT-NAACL} is the most similar in that they also try to directly combine two segmenters -- one char-based and one word-based. But they do it through segmenter bagging, which would require training up 50 or more individual segmenters and poll their results at test time, significantly increases training and testing effort, not practical.
+\cite{Sun:2009:HLT-NAACL} presented a latent-variable model. very complicated, hard to train. our method is much simpler and works better than their method.

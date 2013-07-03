@@ -110,3 +110,25 @@ for pku
 \subsection{Error analysis}
 % this makes sense, i will do this tomorrow
 Maybe look at cases where the model choose the worse of the two instead of the better of the two. See if there are patterns or insights we can draw. Not very important for a short paper.
+
+some errors where DD picks the wrong model:
+gold: 有 亭台樓閣 流水
+CRF: 亭台 樓閣  <-- DD
+PCT: 亭台樓閣
+
+gold: 大規模 海陸空 聯合 軍演   
+CRF: 大規模 海 陸空 聯合 軍演   <-- DD
+PCT: 大規模 海陸空 聯合 軍演   
+
+
+gold: 在 李鄭屋邨 附近
+CRF: 在 李鄭屋邨 附近
+PCT: 在 李鄭屋 邨 附近   <-- DD
+
+gold: 麥 父 笑說
+CRF:  麥 父 笑說
+PCT: 麥父 笑說    <-- DD
+
+gold: 天氣 熱 時 冷氣 大 開     
+CRF: 天氣 熱 時 冷氣 大 開     
+PCT: 天氣 熱時 冷氣 大 開     <-- DD
