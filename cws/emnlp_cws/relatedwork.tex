@@ -32,3 +32,11 @@ In order to bring in bigram language model,  \shortcite{Lin:2009:CICLing} gave a
 
 \cite{Sun:2009:HLT-NAACL} is the most similar in that they also try to directly combine two segmenters -- one char-based and one word-based. But they do it through segmenter bagging, which would require training up 50 or more individual segmenters and poll their results at test time, significantly increases training and testing effort, not practical.
 \cite{Sun:2009:HLT-NAACL} presented a latent-variable model. very complicated, hard to train. our method is much simpler and works better than their method.
+
+
+reasons they aren't used:
+	models are complicated, involved, hard to implement
+	losses in efficiency
+	
+	
+so we take two existing trained models 

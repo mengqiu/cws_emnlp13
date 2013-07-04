@@ -1,47 +1,49 @@
 \section{Experiments}
 
-In this work, we employ two baseline models --- a character-based CRF and a word-based perceptron --- and test the performance of jointly decoding these baseline systems with dual decomposition. For our character-based CRF, we use the open-source Stanford CRF segmenter described in \cite{Tseng:2005:SIGHAN}.\footnote{http://nlp.stanford.edu/software/segmenter.shtml}
-For our word-based perceptron, we use a reimplementation of \cite{Zhang:2007:ACL}.
+In this work, we employ two baseline models --- a character-based CRF and a word-based perceptron --- and test the performance of jointly decoding these baseline systems with dual decomposition. 
+
+For our character-based CRF, we use the open-source Stanford CRF segmenter described in \cite{Tseng:2005:SIGHAN}.\footnote{http://nlp.stanford.edu/software/segmenter.shtml} In this system we use L2 regularization with a value of X %TODO: insert actual value / word this properly
+and sigma set to 3.
+
+For our word-based perceptron, we use a reimplementation of \cite{Zhang:2007:ACL}, run with 10 iterations of training.
+
+For joint decoding with dual decomposition, we use an initial step size set to 0.1, and run for 100 iterations.
 
 % question: what is the relationship between this dev data and that used in sighan2003/2005?
-For development data, we used:
-Training: CTB section 1-270  400-931 1001-115;   Dev: CTB section 271-300.
+We use the same development set employed by \cite{Zhang:2007:ACL}, with Chinese Treebank sections 1-270, 400-931, and 1001-115 used as training data and sections 271-300 used as development data for tuning the hyperparameters of all three systems.
 
-Hyper-parameters tuned on the dev set.
-Perceptron: 10 iterations of training. 
-CRF: L2-regularization Sigma set to 3.
-Dual-decomp: initial step size set to 0.1, 100 iterations. 
-
-\subsection{Dataset}
-Give description of the SIGHAN 2003 \cite{Sproat:2003:SIGHAN} and 2005 \cite{Emerson:2005:SIGHAN} bake-off datasets. 
-List a table of the corpora names, size of training, testing, etc, similar to \cite{Sun:2010:COLING}.
+\subsection{Datasets}
+Our test data is the standard SIGHAN 2003 \cite{Sproat:2003:SIGHAN} and 2005 \cite{Emerson:2005:SIGHAN} bake-off datasets. [Add a note here about why not using CTB - who figured out it was broken, how do we know not to use it?]
 
 
-\begin{table}
-\centering
-\begin{small}
-\begin{tabular}{ l | l | c | c | c | c | c   }
-%\cline{2-10}
+%List a table of the corpora names, size of training, testing, etc, similar to \cite{Sun:2010:COLING}.
+
+%
+%\begin{table}
+%\centering
+%\begin{small}
+%\begin{tabular}{ l | l | c | c | c | c | c   }
+%%\cline{2-10}
+%%\hline
+%% &   \multicolumn{1}{|c}{Models} & \multicolumn{1}{c}{$\lambda$} & \multicolumn{1}{c|}{No. of experts} & {P} & {R} & {F$_1$}   & \multicolumn{1}{c}{P} & \multicolumn{1}{c}{R} & \multicolumn{1}{c}{F$_1$}   \\
 %\hline
-% &   \multicolumn{1}{|c}{Models} & \multicolumn{1}{c}{$\lambda$} & \multicolumn{1}{c|}{No. of experts} & {P} & {R} & {F$_1$}   & \multicolumn{1}{c}{P} & \multicolumn{1}{c}{R} & \multicolumn{1}{c}{F$_1$}   \\
-\hline
-    \multicolumn{2}{c}{}  &  \multicolumn{1}{c}{\#W.T.} &  \multicolumn{1}{c}{\#W} &  \multicolumn{1}{c}{\#C.T.}    & \multicolumn{1}{c}{\#C}   &  \multicolumn{1}{c}{OOV}  \\ 
-\hline
-\multirow{4}{*}{2005}  & AS      & -  &  -  & -  &  - & 4.3   \\
-& MS      & 88K & 2.3M & 5K & 4.1M & 2.6 \\
-& PU      &  55k & 1.1M & 5K & 1.8M & 5.8  \\
-& CU      & 69K  & 1.5M& 5K & 2.4M & 7.4 \\
-\hline
-\multirow{3}{*}{2003} & AS  &  - & - & - & - & 2.2 \\
-& PU  &  - & - & - & - & 6.9 \\
-& CU  & - & - & - & - & 7.1  \\
+%    \multicolumn{2}{c}{}  &  \multicolumn{1}{c}{\#W.T.} &  \multicolumn{1}{c}{\#W} &  \multicolumn{1}{c}{\#C.T.}    & \multicolumn{1}{c}{\#C}   &  \multicolumn{1}{c}{OOV}  \\ 
 %\hline
-%\multirow{4}{*}{CTB}  &  Best03  &  \textbf{0.886}  & 0.875 &  \textbf{0.881} & 0.181 & 0.644  & \textbf{0.927} \\
-%& PcpTr       & 0.869 & 0.865 & 0.867 & 0.181 & 0.680  & 0.910 \\
-%& PcpTr & 0.865 & 0.871 & 0.868 & 0.181 & 0.660 & 0.910 \\
-%& DD  & 0.876 & \textbf{0.878} & 0.877 & 0.181 & \textbf{69.2} & 0.917  \\
-
-\end{tabular} 
-\caption{Results on SIGHAN 2005 and 2003 datasets. }\label{tbl:results}
-\end{small}
-\end{table}
+%\multirow{4}{*}{2005}  & AS      & -  &  -  & -  &  - & 4.3   \\
+%& MS      & 88K & 2.3M & 5K & 4.1M & 2.6 \\
+%& PU      &  55k & 1.1M & 5K & 1.8M & 5.8  \\
+%& CU      & 69K  & 1.5M& 5K & 2.4M & 7.4 \\
+%\hline
+%\multirow{3}{*}{2003} & AS  &  - & - & - & - & 2.2 \\
+%& PU  &  - & - & - & - & 6.9 \\
+%& CU  & - & - & - & - & 7.1  \\
+%%\hline
+%%\multirow{4}{*}{CTB}  &  Best03  &  \textbf{0.886}  & 0.875 &  \textbf{0.881} & 0.181 & 0.644  & \textbf{0.927} \\
+%%& PcpTr       & 0.869 & 0.865 & 0.867 & 0.181 & 0.680  & 0.910 \\
+%%& PcpTr & 0.865 & 0.871 & 0.868 & 0.181 & 0.660 & 0.910 \\
+%%& DD  & 0.876 & \textbf{0.878} & 0.877 & 0.181 & \textbf{69.2} & 0.917  \\
+%
+%\end{tabular} 
+%\caption{Results on SIGHAN 2005 and 2003 datasets. }\label{tbl:results}
+%\end{small}
+%\end{table}
