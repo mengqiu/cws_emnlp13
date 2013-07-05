@@ -2,12 +2,15 @@
 
 %In this section we talked about detailed consistency analysis and maybe give some examples.
 
+On the whole, dual decomposition produces state-of-the-art segmentations that are more accurate, more consistent, and more successful at inducing out-of-vocabulary words than the baseline systems that it combines.
+
 \subsection{Dual decomposition convergence}
 Plot the histogram of the number of iterations it takes to converge, and percentage of optimality. 
 
 \subsection{Consistency}
 
-\cite{Chang:2008:ACL} have shown that increased segmentation consistency is correlated with better machine translation performance. Following their method for calculating the conditional entropy of a segmentation system, we see in Table [insert table] that our dual decomposition method achieves the most consistent results on 6 out of 7 datasets.
+\cite{Chang:2008:ACL} have shown that increased segmentation consistency is correlated with better machine translation performance. Following their method for calculating the conditional entropy of a segmentation system, we see in Table [insert table] that our dual decomposition method achieves the most consistent segmentations (lowest conditional entropy) on 6 out of 7 datasets.
+
 
 Consistency Results, Sighan 2003:
 
@@ -63,71 +66,98 @@ pku pct
 0.0996634383663
 pku dd
 0.086635535204
-
-\subsection{Oracle}
-
-Following \cite{Sun:2010:COLING}, we run an oracle experiment to estimate the upper bound of improvement possible via system combination to further contextualize our results. 
-
-To do so, we combine our two baselines with the gold-standard segmentation. Each character in the test set is labeled with three \emph{B} or \emph{I} tags, \emph{B} when it begins a word and \emph{I} when it is word-medial or word-final, according to our two baselines and the gold standard. We then create oracle labels by majority vote: if the baselines agree, their label is used; if they disagree, the gold label is used.
-
-The results of this oracle experiment, shown in Table [insert table], show that [what do they show? DD approaches the upper bound possible?]
-
-% this is here to know what each column means in the output below
-%=== TOTAL INSERTIONS:	75
-%=== TOTAL DELETIONS:	84
-%=== TOTAL SUBSTITUTIONS:	783
-%=== TOTAL NCHANGE:	942
-%=== TOTAL TRUE WORD COUNT:	11989
-%=== TOTAL TEST WORD COUNT:	11980
-%=== TOTAL TRUE WORDS RECALL:	0.928
-%=== TOTAL TEST WORDS PRECISION:	0.928
-%=== F MEASURE:	0.928
-%=== OOV Rate:	0.022
-%=== OOV Recall Rate:	0.810
-%=== IV Recall Rate:	0.930
-Scoring Oracle Output, Sighan 2003
-for as
-	sighan2003/as.oracle	75	84	783	942	11989	11980	0.928	0.928	0.928	0.022	0.810	0.930
-for cityu
-	sighan2003/cityu.oracle	402	333	2364	3099	35087	35156	0.923	0.921	0.922	0.071	0.824	0.931
-for ctb
-	sighan2003/ctb.oracle	920	1005	4490	6415	39921	39836	0.862	0.864	0.863	0.181	0.773	0.882
-for pku
-	sighan2003/pku.oracle	186	187	1593	1966	17194	17193	0.896	0.897	0.897	0.069	0.834	0.901
-
-Scoring Oracle Output, Sighan 2005
-for as
-	sighan2005/as.oracle	1855	726	9980	12561	122610	123739	0.913	0.904	0.908	0.043	0.722	0.921
-for cityu
-	sighan2005/cityu.oracle	577	371	3038	3986	40936	41142	0.917	0.912	0.914	0.074	0.817	0.925
-for msr // currently broken
-	sighan2005/msr.oracle	81	107	1066	1254	10987	10961	0.893	0.895	0.894	0.025	0.584	0.901
-for pku
-	sighan2005/pku.oracle	800	1661	9646	12107	104372	103511	0.892	0.899	0.895	0.058	0.815	0.896
-
+%
+%\subsection{Oracle}
+%
+%Following \cite{Sun:2010:COLING}, we run an oracle experiment to estimate the upper bound of improvement possible via system combination to further contextualize our results. 
+%
+%To do so, we combine our two baselines with the gold-standard segmentation. Each character in the test set is labeled with three \emph{B} or \emph{I} tags, \emph{B} when it begins a word and \emph{I} when it is word-medial or word-final, according to our two baselines and the gold standard. We then create oracle labels by majority vote: if the baselines agree, their label is used; if they disagree, the gold label is used.
+%
+%The results of this oracle experiment, shown in Table [insert table], show that [what do they show? DD approaches the upper bound possible?]
+%
+%% this is here to know what each column means in the output below
+%%=== TOTAL INSERTIONS:	75
+%%=== TOTAL DELETIONS:	84
+%%=== TOTAL SUBSTITUTIONS:	783
+%%=== TOTAL NCHANGE:	942
+%%=== TOTAL TRUE WORD COUNT:	11989
+%%=== TOTAL TEST WORD COUNT:	11980
+%%=== TOTAL TRUE WORDS RECALL:	0.928
+%%=== TOTAL TEST WORDS PRECISION:	0.928
+%%=== F MEASURE:	0.928
+%%=== OOV Rate:	0.022
+%%=== OOV Recall Rate:	0.810
+%%=== IV Recall Rate:	0.930
+%Scoring Oracle Output, Sighan 2003
+%for as
+%	sighan2003/as.oracle	79	88	173	340	11989	11980	0.978	0.979	0.979	0.071	0.940	0.981
+%for cityu
+%	sighan2003/cityu.oracle	402	333	893	1628	35087	35156	0.965	0.963	0.964	0.073	0.823	0.976
+%for ctb
+%	sighan2003/ctb.oracle	929	1014	2504	4447	39921	39836	0.912	0.914	0.913	0.230	0.822	0.939
+%for pku
+%	sighan2003/pku.oracle	189	190	392	771	17194	17193	0.966	0.966	0.966	0.138	0.925	0.973
+%Scoring Oracle Output, Sighan 2003
+%for as
+%	sighan2005/as.oracle	1876	748	2542	5166	122610	123739	0.973	0.964	0.969	0.099	0.890	0.982
+%for cityu
+%	sighan2005/cityu.oracle	577	371	1136	2084	40936	41142	0.963	0.958	0.961	0.075	0.839	0.973
+%for msr // currently broken
+%	sighan2005/msr.oracle	81	107	165	353	10987	10961	0.975	0.978	0.976	0.065	0.934	0.978
+%for pku
+%	sighan2005/pku.oracle	803	1664	2505	4972	104372	103511	0.960	0.968	0.964	0.124	0.924	0.965
+%
 
 \subsection{Error analysis}
-% this makes sense, i will do this tomorrow
-Maybe look at cases where the model choose the worse of the two instead of the better of the two. See if there are patterns or insights we can draw. Not very important for a short paper.
 
-some errors where DD picks the wrong model:
-gold: 有 亭台樓閣 流水
-CRF: 亭台 樓閣  <-- DD
-PCT: 亭台樓閣
+Since dual decomposition is a method of joint decoding, it is liable to reproduce errors made by the constituent systems. In the example below, dual decomposition output follows the incorrect segmentation of the character-based CRF in oversegmenting the compound "sea, land, and air." 
 
-gold: 大規模 海陸空 聯合 軍演   
-CRF: 大規模 海 陸空 聯合 軍演   <-- DD
-PCT: 大規模 海陸空 聯合 軍演   
+%some errors where DD picks the wrong model:
+%gold: 有 亭台樓閣 流水
+%CRF: 亭台 樓閣  <-- DD
+%PCT: 亭台樓閣
+\begin{tabbing}
 
+\ \ \ \ \= \emph{English}\ \ \ \ \= Large-scale sea, land, and air \\ 
+\> \> joint military exercises\\
+\> \emph{Gold}\> 大规模 / 海陆空 / 联合 / 军演\\
 
-gold: 在 李鄭屋邨 附近
-CRF: 在 李鄭屋邨 附近
-PCT: 在 李鄭屋 邨 附近   <-- DD
+\> \emph{CRF}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
 
-gold: 麥 父 笑說
-CRF:  麥 父 笑說
-PCT: 麥父 笑說    <-- DD
+\> \emph{PCPT}\> 大规模 / 海陆空 / 联合 / 军演\\
 
-gold: 天氣 熱 時 冷氣 大 開     
-CRF: 天氣 熱 時 冷氣 大 開     
-PCT: 天氣 熱時 冷氣 大 開     <-- DD
+\> \emph{DD}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
+\end{tabbing}
+
+Nevertheless, in many cases the relative confidence of each model means that dual decomposition is capable of using information from both sources to generate a series of correct segmentations better than either baseline model alone. The example below shows a difficult-to-segment proper name comprised of common characters, which results in undersegmentation by the character-based CRF and oversegmentation by the word-based Perceptron, but our method achieves the correct middle ground.
+
+\begin{tabbing}
+\ \ \ \ \= \emph{English}\ \ \ \ \= Tian Yage's creations \\
+\> \emph{Gold} \>   田雅各 / 的 / 创作 \\
+\> \emph{CRF} \>  田雅各的 / 创作 \\
+\> \emph{PCPT} \>  田雅 / 各 / 的 / 创作 \\
+\> \emph{DD} \>  田雅各 / 的 / 创作 \\
+\end{tabbing}
+
+A powerful feature of the dual decomposition approach is that it can generate correct segmentation decisions in cases where a voting or polling-of-experts model could not, since joint decoding allows the sharing of information at decoding time. In the following example, both baseline models miss the contextually clear grammatical role of 上 (``above") and instead produce the otherwise common compound 上去 (``go up"); dual decomposition allows the model to generate the correct segmentation.
+
+\begin{tabbing}
+\ \ \ \ \= \emph{English}\ \ \ \ \= Enjoy a bit of snack food, ... \\
+\> \emph{Gold} \>  享受 / 一点 / 点心 /  ，\\
+\> \emph{CRF} \> 享受 / 一点点 / 心 / ，\\
+\> \emph{PCPT} \> 享受 / 一点点 / 心 / ， \\
+\> \emph{DD} \>  享受 / 一点 / 点心 / ，\\
+\end{tabbing}
+We found more than 400 such surprisingly accurate instances in our dual decomposition output.
+%
+%gold: 在 李鄭屋邨 附近
+%CRF: 在 李鄭屋邨 附近
+%PCT: 在 李鄭屋 邨 附近   <-- DD
+%
+%gold: 麥 父 笑說
+%CRF:  麥 父 笑說
+%PCT: 麥父 笑說    <-- DD
+%
+%gold: 天氣 熱 時 冷氣 大 開     
+%CRF: 天氣 熱 時 冷氣 大 開     
+%PCT: 天氣 熱時 冷氣 大 開     <-- DD

@@ -1,7 +1,14 @@
 \section{Results}
 
-Reformat the table so it fits in a single column. 
-The OOV rates should be moved out of this table and put in the data description tables in Experiment section Dataset subsection.
+Table \ref{tbl:results} shows our empirical results on each of the 7 datasets from SIGHAN 2003 and 2005. For each dataset, the top three lines show the performance of our character-based CRF and word-based Perceptron (PCPT) systems, as well as their performance under joint decoding with dual decomposition (DD), and the bottom five lines allow for comparison with available results from prior and related work.
+
+Dual decomposition outperforms our baselines in terms of F$_1$ on all seven datasets, demonstrating a robustness across domains and segmentation standards regardless of which baseline model was stronger. Of particular note is DD's out-of-vocabulary recall (R$_{\mathrm{oov}}$), which outperforms our baselines on 5 out of 7 datasets and outperforms all existing available results in this category on every dataset. 
+
+
+
+%
+%Reformat the table so it fits in a single column. 
+%The OOV rates should be moved out of this table and put in the data description tables in Experiment section Dataset subsection.
 
 \begin{table}
 \centering

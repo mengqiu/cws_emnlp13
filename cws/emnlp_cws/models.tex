@@ -31,7 +31,7 @@ The most successful such system reported to date is \cite{Zhang:2007:ACL}'s Perc
 
 
 \cite{Lin:2009:CICLing} and \cite{Wang:2006:SIGHAN} both incorporate a character-based Maxent local classifier model with a language model that captures more word-level context.
-In order to bring in a bigram language model,  \shortcite{Lin:2009:CICLing} gave a heuristic decoding method that involves various forms of conditioning and back-off; \shortcite{Wang:2006:SIGHAN} gave a modified Viterbi algorithm with a complexity of $O(T^3)$. 
+In order to bring in a bigram language model, \shortcite{Lin:2009:CICLing} gave a heuristic decoding method that involves various forms of conditioning and back-off; \shortcite{Wang:2006:SIGHAN} gave a modified Viterbi algorithm with a complexity of $O(T^3)$. 
 
 \cite{Sun:2009:HLT-NAACL} presented a latent-variable model which obtains good performance, but it is very complicated to implement and difficult to train. 
 \cite{Sun:2009:HLT-NAACL} use a method most similar to this work in that they also directly combine two segmenters -- one char-based and one word-based. However, they do it through segmenter bagging, which requires training 50 or more individual segmenters and polling their results at test time. 
