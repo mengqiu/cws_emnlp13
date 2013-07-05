@@ -1,5 +1,6 @@
 \begin{abstract}
-There are two dominant approaches to the Chinese word segmentation problem: word-based and character-based models, each with respective strengths and weaknesses. Prior work has shown that gains in segmentation performance can be achieved from combining these two types of models; however, past efforts involve either training many instances of segmenters and polling their results, or designing complex latent-variable methods that incur heavy computational costs. In this paper, we propose an effective and consistent joint decoding method using dual decomposition, which does not require any additional training. Our method is simple and easy to implement, and achieves the best reported results to date on 6 out of 7 standard SIGHAN evaluation datasets.
+There are two dominant approaches to the Chinese word segmentation problem: word-based and character-based models, each with respective strengths. Prior work has shown that gains in segmentation performance can be achieved from combining these two types of models; however, 
+Past efforts have not provided a practical technique to allow mainstream adoption. We propose a method that effectively combines the strength of both segmentation schemes using an efficient dual-decomposition algorithm for joint inference. Our method is simple and easy to implement. Experiments on SIGHAN 2003 and 2005 evaluation datasets show that our method achieves the best reported results to date on 6 out of 7 datasets.
 \end{abstract}
 
 %%

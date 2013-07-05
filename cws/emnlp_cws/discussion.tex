@@ -12,60 +12,6 @@ Plot the histogram of the number of iterations it takes to converge, and percent
 \cite{Chang:2008:ACL} have shown that increased segmentation consistency is correlated with better machine translation performance. Following their method for calculating the conditional entropy of a segmentation system, we see in Table [insert table] that our dual decomposition method achieves the most consistent segmentations (lowest conditional entropy) on 6 out of 7 datasets.
 
 
-Consistency Results, Sighan 2003:
-
-as crf
-0.037814800237
-as pct
-0.038997075095
-as dd
-0.0372484903836
-cityu crf
-0.0923886605473
-cityu pct
-0.097496193366
-cityu dd
-0.0843064189868
-ctb crf
-0.170532711404
-ctb pct
-0.181993909505
-ctb dd
-0.161722439818
-pku crf
-0.0429803512049
-pku pct
-0.0552572297562
-pku dd
-0.0460509973844
-
-
-Consistency Results, Sighan 2005:
-
-as crf
-0.0635314146511
-as pct
-0.0603263902622
-as dd
-0.055097582491
-cityu crf
-0.0649537861096
-cityu pct
-0.0730776631941
-cityu dd
-0.0618197636595
-msr crf
-0.073782773985
-msr pct
-0.0628241148726
-msr dd
-0.054883418641
-pku crf
-0.0888607888366
-pku pct
-0.0996634383663
-pku dd
-0.086635535204
 %
 %\subsection{Oracle}
 %
@@ -116,10 +62,10 @@ Since dual decomposition is a method of joint decoding, it is liable to reproduc
 %gold: 有 亭台樓閣 流水
 %CRF: 亭台 樓閣  <-- DD
 %PCT: 亭台樓閣
+\begin{small}
 \begin{tabbing}
-
-\ \ \ \ \= \emph{English}\ \ \ \ \= Large-scale sea, land, and air \\ 
-\> \> joint military exercises\\
+\ \ \ \ \= \emph{Gloss}\ \ \ \ \= Large-scale / sea, land, and air / \\ 
+\> \> joint / military exercises\\
 \> \emph{Gold}\> 大规模 / 海陆空 / 联合 / 军演\\
 
 \> \emph{CRF}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
@@ -128,26 +74,29 @@ Since dual decomposition is a method of joint decoding, it is liable to reproduc
 
 \> \emph{DD}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
 \end{tabbing}
-
+\end{small}
 Nevertheless, in many cases the relative confidence of each model means that dual decomposition is capable of using information from both sources to generate a series of correct segmentations better than either baseline model alone. The example below shows a difficult-to-segment proper name comprised of common characters, which results in undersegmentation by the character-based CRF and oversegmentation by the word-based Perceptron, but our method achieves the correct middle ground.
 
+\begin{small}
 \begin{tabbing}
-\ \ \ \ \= \emph{English}\ \ \ \ \= Tian Yage's creations \\
+\ \ \ \ \= \emph{Gloss}\ \ \ \ \= Tian Yage / 's / creations \\
 \> \emph{Gold} \>   田雅各 / 的 / 创作 \\
 \> \emph{CRF} \>  田雅各的 / 创作 \\
 \> \emph{PCPT} \>  田雅 / 各 / 的 / 创作 \\
 \> \emph{DD} \>  田雅各 / 的 / 创作 \\
 \end{tabbing}
+\end{small}
 
 A powerful feature of the dual decomposition approach is that it can generate correct segmentation decisions in cases where a voting or polling-of-experts model could not, since joint decoding allows the sharing of information at decoding time. In the following example, both baseline models miss the contextually clear grammatical role of 上 (``above") and instead produce the otherwise common compound 上去 (``go up"); dual decomposition allows the model to generate the correct segmentation.
-
+\begin{small}
 \begin{tabbing}
-\ \ \ \ \= \emph{English}\ \ \ \ \= Enjoy a bit of snack food, ... \\
+\ \ \ \ \= \emph{English}\ \ \ \ \= Enjoy / a bit of / snack food / , ... \\
 \> \emph{Gold} \>  享受 / 一点 / 点心 /  ，\\
 \> \emph{CRF} \> 享受 / 一点点 / 心 / ，\\
 \> \emph{PCPT} \> 享受 / 一点点 / 心 / ， \\
 \> \emph{DD} \>  享受 / 一点 / 点心 / ，\\
 \end{tabbing}
+\end{small}
 We found more than 400 such surprisingly accurate instances in our dual decomposition output.
 %
 %gold: 在 李鄭屋邨 附近
