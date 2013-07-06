@@ -3,37 +3,29 @@
 In this section, we describe the character-based and word-based models we use as baselines, and review existing approaches to combine these models.
 
 \subsection{Character-based Models}
-In the most commonly used contemporary approach to character-based segmentation, first proposed by \cite{Xue:2003:IJCLCLP}, CWS is seen as a character sequence tagging task, where each character is tagged on whether it is at the beginning, middle, or end of a word. Conditional random fields (CRFs) are often used for this purpose (cite, cite, cite). In a CRF segmentation model, the probability of a label sequence is given by this equation:
-
-%[add eq here]
-% add defs of all the variables
-
-Common linguistic features include character n-grams and morphological suffix/prefix features. Since these features capture information about the compositional properties of characters, they are likely to generalize well to unknown words.
-
+In the most commonly used contemporary approach to character-based segmentation, first proposed by \cite{Xue:2003:IJCLCLP}, CWS is seen as a character sequence tagging task, where each character is tagged on whether it is at the beginning, middle, or end of a word. Conditional random field (CRF) \cite{Lafferty:2001:ICML} is widely adopted for this task, and gives state-of-the-art results \cite{Tseng:2005:SIGHAN}. In a first-order linear-chain CRF model, the conditional probability of a label sequence $\mathbf{y}$ given a word sequence $\mathbf{x}$ is defined as:
+\begin{align*}
+P(\mathbf{y} | \mathbf{x}) = \frac{1}{Z}{ \sum\limits_{t=1}^{|\mathbf{y}|}{ \exp^{ \vec\theta \vec{f}(x, y_{t}, y_{t+1}) } }}
+\end{align*}
+\noindent $f(x, y_{t}, y_{t-1})$ are features functions that typically include surrounding n-gram and morphological suffix/prefix features. These types of features capture the compositional properties of characters and are likely to generalize well to unknown words.  
+But the Markov assumption in CRF limits the context of such features, it is difficult to capture long-range word features in this model. 
+%, which is important for admitting efficient inference, restricts the CRF to very local context features. A first-order CRF can only reason about character boundary decisions of current and neighboring positions. 
+%It is therefore difficult to directly model words of greater length. Although higher-order CRF could potentially alleviate this problem, and has been applied to CWS \cite{Zhao:2007:ICNC}, it comes at the cost of exponentially higher model complexity. 
 
 \subsection{Word-based Models}
-
-Initially word-based segmentation approaches employed simple heuristics like dictionary-lookup maximum matching \cite{Chen:1992:ACL}, contemporary approaches use machine learning techniques to solve an argmax problem of the form:
-
-% add eq
-
-The most successful such system reported to date is \cite{Zhang:2007:ACL}'s Perceptron-based model, which uses a search-based discriminative decoder to solve the ... %MQ add here?
+Word-based models searches through lists of word candidates using scoring functions that directly assign scores to word candidates. 
+Early word-based segmentation work employed simple heuristics like dictionary-lookup maximum matching \cite{Chen:1992:ACL}. More recent success was reported by  \newcite{Zhang:2007:ACL}, who used a linear discriminative model to score candidate word lists. 
+More concretely, given input $\mathbf{x}$, their models seeks for a segmentation $F(\mathbf{x})$ such that $F(\mathbf{x}) =  \argmax{ \vec\alpha \vec\phi(\mathbf{x}) }$.
+Feature weights are trained using the average perceptron algorithm \cite{Collins:2002:EMNLP}. Searching through the entire  search space $\mathrm{GEN}(\mathbf{x})$ is intractable even with a local model. A beam-search algorithm is therefore employed. The search algorithm consumes one character input token at a time, and iterate through the existing beams to score two new alternative hypothesis by either appending the new character to the last word in the beam, or start a new word at current position.
 
 
-%See \cite{Sun:2010:COLING} for a good description. We used the perceptron based model proposed by \cite{Zhang:2007:ACL}, give the equation of the perceptron, and describe the features. Point out how some of these features basically directly capture the training lexicon.
-%
-%\subsection{Relative Strength and Weakness}
-%Char-based CRF models are better at generalizing over to OOV words (thus higher OOV recall).  (NOTE: 6 out of 8 datasets on test, CRF has better OOV recall, but we should defer to talk about this in the results section). But as a tradeoff, it generates more inconsistent segmentation, and creates lots of spurious words.
-% The advantage of Word-based segmenters are that they are more consistent with the training lexicon, words seen in training lexicon are not likely to be segmented into many new ways; disadvantage is that it doesn't generalize well to OOV. Also exact inference is difficult, need to resolve to approximate decoding algorithms such as beam-searching.
-% 
-
-\subsection{Mixing Models} Since the two types of models described above have different strengths and make different kinds of errors, various mixing approaches have been proposed to combine them \cite{Wang:2006:SIGHAN,Lin:2009:CICLing,Sun:2009:HLT-NAACL,Sun:2010:COLING,Wang:2010:COLING}. 
-
-
-\cite{Lin:2009:CICLing} and \cite{Wang:2006:SIGHAN} both incorporate a character-based Maxent local classifier model with a language model that captures more word-level context.
-In order to bring in a bigram language model, \shortcite{Lin:2009:CICLing} gave a heuristic decoding method that involves various forms of conditioning and back-off; \shortcite{Wang:2006:SIGHAN} gave a modified Viterbi algorithm with a complexity of $O(T^3)$. 
-
-\cite{Sun:2009:HLT-NAACL} presented a latent-variable model which obtains good performance, but it is very complicated to implement and difficult to train. 
-\cite{Sun:2009:HLT-NAACL} use a method most similar to this work in that they also directly combine two segmenters -- one char-based and one word-based. However, they do it through segmenter bagging, which requires training 50 or more individual segmenters and polling their results at test time. 
-
+\subsection{Combine Models with Dual-decomposition} 
+Various mixing approaches have been proposed to combine the above two approaches \cite{Wang:2006:SIGHAN,Lin:2009:CICLing,Sun:2009:HLT-NAACL,Sun:2010:COLING,Wang:2010:COLING}. 
 These mixing models perform well on standard datasets, but are not in wide use because of their high computational costs and difficulty of implementation.
+
+Dual decomposition offers an attractive framework for combining these two types of models without incurring high cost in model complexity (in contrast to \cite{Sun:2009:HLT-NAACL}) or decoding efficiency (in contrast to bagging in \cite{Wang:2006:SIGHAN,Sun:2010:COLING}).
+DD has been successfully applied to similar situations where we want to combine local model with global models, for example, in dependency parsing \cite{Koo:2010:EMNLP}), bilingual sequence tagging \cite{Wang:2013:ACL} and word alignment \cite{Denero:2011:ACL}.  
+
+Give a brief description of DD algorithm, focus on the intuition. See \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL} for a good short introduction example.
+Refer users to \cite{Rush:2012:JAIR} for a full tutorial on dual decomp.
+The modification to Viterbi decoding is exactly the same as in \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL}. The modification to the beam-search is similar, each time we extend a hypothesis with a new character, depending if the new character is appended to the last word or starting a new word, the corresponding DD penalty is factored into the score for the new hypothesis. 

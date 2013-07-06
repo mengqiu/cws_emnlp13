@@ -15,7 +15,12 @@
 \usepackage{multirow}
 \usepackage{CJKutf8}
 
+%\newcommand\argmaxB[1]{
+%    \underset{#1}{\operatorname{argmax}}
+%}
+\def\argmax{\underset{y \in \mathrm{GEN}(\mathbf{x})}{\operatorname{argmax}}}
 
+%\underset{x}{\operatorname{argmax}}
 %\input macros
 
 \title{Two Knives Cut Better Than One: \\ Chinese Word Segmentation with Dual Decomposition} % too silly? too violent-sounding?
@@ -45,7 +50,7 @@
 \input{introduction} \label{sec:intro}
 \input{models} \label{sec:models}
 %\input{models} \label{sec:models}
-\input{dual-decomp} \label{sec:dual-decomp}
+%\input{dual-decomp} \label{sec:dual-decomp}
 \input{experiment} \label{sec:experiment}
 \input{results} \label{sec:results}
 \input{discussion} \label{sec:discussion}
