@@ -37,7 +37,7 @@ Nevertheless, in many cases the relative confidence of each model means that dua
 \end{tabbing}
 \end{small}
 
-A powerful feature of the dual decomposition approach is that it can generate correct segmentation decisions in cases where a voting or product-of-experts model could not, since joint decoding allows the sharing of information at decoding time. In the following example, both baseline models miss the contextually clear grammatical role of 上 (``above") and instead produce the otherwise common compound 上去 (``go up"); dual decomposition allows the model to generate the correct segmentation.
+A powerful feature of the dual decomposition approach is that it can generate correct segmentation decisions in cases where a voting or product-of-experts model could not, since joint decoding allows the sharing of information at decoding time. In the following example, both baseline models miss the contextually clear use of the word 点心 (``sweets / snack food") and instead attach 点 to the prior word to produce the otherwise common compound 一点点 (``a little bit"); dual decomposition allows the model to generate the correct segmentation.
 \begin{small}
 \begin{tabbing}
 \ \ \ \ \= \emph{English}\ \ \ \ \= Enjoy / a bit of / snack food / , ... \\
