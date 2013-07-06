@@ -2,5 +2,7 @@
 
 
 We conduct experiments on the SIGHAN 2003 \cite{Sproat:2003:SIGHAN} and 2005 \cite{Emerson:2005:SIGHAN} bake-off datasets to evaluate the effectiveness of the proposed dual decomposition algorithm. We use the publicly available Stanford CRF segmenter \cite{Tseng:2005:SIGHAN}\footnote{http://nlp.stanford.edu/software/segmenter.shtml} as our character-based baseline model, and reproduce the perceptron-based segmenter from \newcite{Zhang:2007:ACL} as our word-based baseline model.
+
 We adopted the development setting from \cite{Zhang:2007:ACL}, and used CTB sections 1-270 for training, and sections 400-931for development. The optimized hyper-parameters used are: $\ell_{2}$ regularization parameter $\lambda$ in CRF is set to $3$; perceptron is trained for 10 iterations with beam size 200; dual decomposition is run to max iteration of 100 ($T$ in Algo.~\ref{algo:DD}) with step size 0.1 ($\alpha_t$ in Algo.~\ref{algo:DD}). Other than the standard precision (P), recall (R) and F$_1$ scores, we also evaluate segmentation consistency as proposed by \cite{Chang:2008:ACL}, who have shown that increased segmentation consistency is correlated with better machine translation performance. The consistency measure calculates the entropy of segmentation variations --- the lower the score the better. 
+
 %Statistical significance tests are done using the paired bootstrap resampling method \cite{efron93bootstrap}.
