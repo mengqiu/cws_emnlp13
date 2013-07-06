@@ -5,8 +5,9 @@ In this section, we describe the character-based and word-based models we use as
 
 \subsection{Character-based Models}
 In the most commonly used contemporary approach to character-based segmentation, first proposed by \cite{Xue:2003:IJCLCLP}, CWS is seen as a character sequence tagging task, where each character is tagged on whether it is at the beginning, middle, or end of a word. Conditional random field (CRF) \cite{Lafferty:2001:ICML} is widely adopted for this task, and gives state-of-the-art results \cite{Tseng:2005:SIGHAN}. In a first-order linear-chain CRF model, the conditional probability of a label sequence $\mathbf{y}$ given a word sequence $\mathbf{x}$ is defined as:
-\begin{align*}
+\begin{align*}\vspace{-10em}
 P(\mathbf{y} | \mathbf{x}) = \frac{1}{Z}{ \sum\limits_{t=1}^{|\mathbf{y}|}{ \exp^{ \vec\theta \vec{f}(x, y_{t}, y_{t+1}) } }}
+\vspace{-10em}
 \end{align*}
 \noindent $f(x, y_{t}, y_{t-1})$ are features functions that typically include surrounding n-gram and morphological suffix/prefix features. These types of features capture the compositional properties of characters and are likely to generalize well to unknown words.  
 But the Markov assumption in CRF limits the context of such features, it is difficult to capture long-range word features in this model. 
