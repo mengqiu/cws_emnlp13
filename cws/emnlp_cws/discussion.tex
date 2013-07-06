@@ -6,26 +6,26 @@ In 77.4\% of the cases, DD converged in the first iteration. The number of itera
 
 \paragraph{Error analysis}
 
-Since dual decomposition is a method of joint decoding, it is liable to reproduce errors made by the constituent systems. In the example below, dual decomposition output follows the incorrect segmentation of the character-based CRF in oversegmenting the compound "sea, land, and air." 
+%In the example below, dual decomposition output follows the incorrect segmentation of the character-based CRF in oversegmenting the compound "sea, land, and air." 
 
-%some errors where DD picks the wrong model:
-%gold: 有 亭台樓閣 流水
-%CRF: 亭台 樓閣  <-- DD
-%PCT: 亭台樓閣
-\begin{small}
-\begin{tabbing}
-\ \ \ \ \= \emph{Gloss}\ \ \ \ \= Large-scale / sea, land, and air / \\ 
-\> \> joint / military exercises\\
-\> \emph{Gold}\> 大规模 / 海陆空 / 联合 / 军演\\
-
-\> \emph{CRF}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
-
-\> \emph{PCPT}\> 大规模 / 海陆空 / 联合 / 军演\\
-
-\> \emph{DD}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
-\end{tabbing}
-\end{small}
-Nevertheless, in many cases the relative confidence of each model means that dual decomposition is capable of using information from both sources to generate a series of correct segmentations better than either baseline model alone. The example below shows a difficult-to-segment proper name comprised of common characters, which results in undersegmentation by the character-based CRF and oversegmentation by the word-based Perceptron, but our method achieves the correct middle ground.
+%%some errors where DD picks the wrong model:
+%%gold: 有 亭台樓閣 流水
+%%CRF: 亭台 樓閣  <-- DD
+%%PCT: 亭台樓閣
+%\begin{small}
+%\begin{tabbing}
+%\ \ \ \ \= \emph{Gloss}\ \ \ \ \= Large-scale / sea, land, and air / \\ 
+%\> \> joint / military exercises\\
+%\> \emph{Gold}\> 大规模 / 海陆空 / 联合 / 军演\\
+%
+%\> \emph{CRF}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
+%
+%\> \emph{PCPT}\> 大规模 / 海陆空 / 联合 / 军演\\
+%
+%\> \emph{DD}\> 大规模 / 海 / 陆空 / 联合 / 军演\\
+%\end{tabbing}
+%\end{small}
+In many cases the relative confidence of each model means that dual decomposition is capable of using information from both sources to generate a series of correct segmentations better than either baseline model alone. The example below shows a difficult-to-segment proper name comprised of common characters, which results in undersegmentation by the character-based CRF and oversegmentation by the word-based Perceptron, but our method achieves the correct middle ground.
 
 \begin{small}
 \begin{tabbing}
@@ -48,6 +48,8 @@ A powerful feature of the dual decomposition approach is that it can generate co
 \end{tabbing}
 \end{small}
 We found more than 400 such surprisingly accurate instances in our dual decomposition output.
+
+Finally, since dual decomposition is a method of joint decoding, it is liable to reproduce errors made by the constituent systems. 
 
 
 \begin{figure}
