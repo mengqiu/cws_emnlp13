@@ -1,7 +1,7 @@
 \section{Discussion and Error Analysis}
 
 On the whole, dual decomposition produces state-of-the-art segmentations that are more accurate, more consistent, and more successful at inducing \textsc{oov} words than the baseline systems that it combines.
-On the SIGHAN 2005 test set, over 99.1\% cases the DD algorithm converged within 100 iterations which gives optimality guarantee. 
+On the SIGHAN 2005 test set, in over 99.1\% cases the DD algorithm converged within 100 iterations which gives an optimality guarantee. 
 In 77.4\% of the cases, DD converged in the first iteration. The number of iterations to convergence histogram is plotted in Figure~\ref{fig:histo}.
 
 \paragraph{Error analysis}
@@ -27,7 +27,7 @@ In 77.4\% of the cases, DD converged in the first iteration. The number of itera
 %\end{small}
 In many cases the relative confidence of each model means that dual decomposition is capable of using information from both sources to generate a series of correct segmentations better than either baseline model alone. The example below shows a difficult-to-segment proper name comprised of common characters, which results in undersegmentation by the character-based CRF and oversegmentation by the word-based perceptron, but our method achieves the correct middle ground.
 
-\begin{small}
+\begin{footnotesize}
 \begin{tabbing}
 \ \ \ \ \= \emph{Gloss}\ \ \ \ \= Tian Yage / 's / creations \\
 \> \emph{Gold} \>   田雅各 / 的 / 创作 \\
@@ -35,10 +35,10 @@ In many cases the relative confidence of each model means that dual decompositio
 \> \emph{PCPT} \>  田雅 / 各 / 的 / 创作 \\
 \> \emph{DD} \>  田雅各 / 的 / 创作 \\
 \end{tabbing}
-\end{small}
+\end{footnotesize}
 
 A powerful feature of the dual decomposition approach is that it can generate correct segmentation decisions in cases where a voting or product-of-experts model could not, since joint decoding allows the sharing of information at decoding time. In the following example, both baseline models miss the contextually clear use of the word 点心 (``sweets / snack food") and instead attach 点 to the prior word to produce the otherwise common compound 一点点 (``a little bit"); dual decomposition allows the model to generate the correct segmentation.
-\begin{small}
+\begin{footnotesize}
 \begin{tabbing}
 \ \ \ \ \= \emph{English}\ \ \ \ \= Enjoy / a bit of / snack food / , ... \\
 \> \emph{Gold} \>  享受 / 一点 / 点心 /  ，\\
@@ -46,7 +46,7 @@ A powerful feature of the dual decomposition approach is that it can generate co
 \> \emph{PCPT} \> 享受 / 一点点 / 心 / ， \\
 \> \emph{DD} \>  享受 / 一点 / 点心 / ，\\
 \end{tabbing}
-\end{small}
+\end{footnotesize}\vspace{-3mm}
 We found more than 400 such surprisingly accurate instances in our dual decomposition output.
 
 Finally, since dual decomposition is a method of joint decoding, it is still liable to reproduce errors made by the constituent systems. 
