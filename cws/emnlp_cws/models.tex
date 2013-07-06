@@ -2,6 +2,7 @@
 
 In this section, we describe the character-based and word-based models we use as baselines, and review existing approaches to combine these models.
 
+
 \subsection{Character-based Models}
 In the most commonly used contemporary approach to character-based segmentation, first proposed by \cite{Xue:2003:IJCLCLP}, CWS is seen as a character sequence tagging task, where each character is tagged on whether it is at the beginning, middle, or end of a word. Conditional random field (CRF) \cite{Lafferty:2001:ICML} is widely adopted for this task, and gives state-of-the-art results \cite{Tseng:2005:SIGHAN}. In a first-order linear-chain CRF model, the conditional probability of a label sequence $\mathbf{y}$ given a word sequence $\mathbf{x}$ is defined as:
 \begin{align*}
@@ -15,17 +16,58 @@ But the Markov assumption in CRF limits the context of such features, it is diff
 \subsection{Word-based Models}
 Word-based models searches through lists of word candidates using scoring functions that directly assign scores to word candidates. 
 Early word-based segmentation work employed simple heuristics like dictionary-lookup maximum matching \cite{Chen:1992:ACL}. More recent success was reported by  \newcite{Zhang:2007:ACL}, who used a linear discriminative model to score candidate word lists. 
-More concretely, given input $\mathbf{x}$, their models seeks for a segmentation $F(\mathbf{x})$ such that $F(\mathbf{x}) =  \argmax{ \vec\alpha \vec\phi(\mathbf{x}) }$.
-Feature weights are trained using the average perceptron algorithm \cite{Collins:2002:EMNLP}. Searching through the entire  search space $\mathrm{GEN}(\mathbf{x})$ is intractable even with a local model. A beam-search algorithm is therefore employed. The search algorithm consumes one character input token at a time, and iterate through the existing beams to score two new alternative hypothesis by either appending the new character to the last word in the beam, or start a new word at current position.
+More concretely, given input $\mathbf{x}$, their models seeks for a segmentation $F(\mathbf{x})$ such that:
+\begin{align*}
+F(\mathbf{y}|\mathbf{x}) =  \argmax{ \vec\alpha \vec\phi(\mathbf{\mathbf{y}}) }
+\end{align*}
+\noindent Feature weights are trained using the average perceptron algorithm \cite{Collins:2002:EMNLP}. Searching through the entire  search space $\mathrm{GEN}(\mathbf{x})$ is intractable even with a local model. A beam-search algorithm is therefore employed. The search algorithm consumes one character input token at a time, and iterate through the existing beams to score two new alternative hypothesis by either appending the new character to the last word in the beam, or start a new word at current position.
 
+\begin{algorithm}[!ht]
+\begin{footnotesize}
+\caption{DD inference algorithm, modified Viterbi and BeamSearch.}
+\begin{algorithmic}
+\STATE $\forall i \in \{1\; \mathrm{to} \; |\mathbf{x}|\} \colon \; \forall k \in \{0,1\} \colon u_{i}(k) = 0$
+\FOR{$t \leftarrow 1$  \textbf{to} $T$}
+\STATE   $\mathbf{y^{c*}} = \argmaxb \; P(\mathbf{y^\textit{c}} | \mathbf{x}) +  \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c})}$ 
+\STATE   $\mathbf{y^{w*}} = \argmax \; F(\mathbf{y^\textit{w}} | \mathbf{x}) -  \sum\limits_{i\in |\mathbf{x}|}{ u_{i}(y_j^\textit{w})}$
+\IF{ $\mathbf{y^{c*}} =  \mathbf{y^{w*}}$ }
+\RETURN $\left(\mathbf{y^{\textit{c}*}},\mathbf{y^{\textit{w}*}}\right)$
+\ENDIF
+\FORALL{$i \in \{1\; \mathrm{to} \; |\mathbf{x}|\} $}
+\STATE  $\forall k \in \{0,1\}: u_i(k)=u_i(k) + \alpha_t (2k-1)(y_i^{w*}-y_i^{c*})$ 
+\ENDFOR
+\ENDFOR
+\RETURN $\left(\mathbf{y^{c*}},\mathbf{y^{w*}}\right)$
+ \\\hrulefill
+\STATE Viterbi: 
+\STATE $V_1(1) = 1, V_1(0) = 0$
+\FOR{$i = 2 \; \mathrm{to} \; |\mathbf{x}|$}
+\STATE $\forall k \in \{0,1\}: V_i(k) = \argmaxk P_i(k | k') V_{i-1}{k'} + u_{i}(k)$ 
+\ENDFOR
+ \\\hrulefill
+\STATE BeamSearch:
+\FOR{$i = 1 \; \mathrm{to} \; |\mathbf{x}|$}
+\FOR{ item $v = \{w_0,\cdots,w_j\}$ in $\mathrm{beam}(i)$}
+\STATE append $x_i$ to $w_j$, $\mathrm{score}(v) \stackrel{+}{=}   u_{i}(0)$
+\STATE $v = \{w_0,\cdots,w_j, x_i\}$, $\mathrm{score}(v) \stackrel{+}{=} u_{i}(1)$
+\ENDFOR
+\ENDFOR
+\end{algorithmic}
+\label{algo:DD}
+\end{footnotesize}
+\end{algorithm}
 
 \subsection{Combine Models with Dual-decomposition} 
 Various mixing approaches have been proposed to combine the above two approaches \cite{Wang:2006:SIGHAN,Lin:2009:CICLing,Sun:2009:HLT-NAACL,Sun:2010:COLING,Wang:2010:COLING}. 
 These mixing models perform well on standard datasets, but are not in wide use because of their high computational costs and difficulty of implementation.
 
-Dual decomposition offers an attractive framework for combining these two types of models without incurring high cost in model complexity (in contrast to \cite{Sun:2009:HLT-NAACL}) or decoding efficiency (in contrast to bagging in \cite{Wang:2006:SIGHAN,Sun:2010:COLING}).
-DD has been successfully applied to similar situations where we want to combine local model with global models, for example, in dependency parsing \cite{Koo:2010:EMNLP}), bilingual sequence tagging \cite{Wang:2013:ACL} and word alignment \cite{Denero:2011:ACL}.  
+Dual decomposition (DD) \cite{Rush:2010:EMNLP} offers an attractive framework for combining these two types of models without incurring high cost in model complexity (in contrast to \cite{Sun:2009:HLT-NAACL}) or decoding efficiency (in contrast to bagging in \cite{Wang:2006:SIGHAN,Sun:2010:COLING}). DD has been successfully applied to similar situations where we want to combine local model with global models, for example, in dependency parsing \cite{Koo:2010:EMNLP}), bilingual sequence tagging \cite{Wang:2013:ACL} and word alignment \cite{Denero:2011:ACL}.  
 
-Give a brief description of DD algorithm, focus on the intuition. See \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL} for a good short introduction example.
-Refer users to \cite{Rush:2012:JAIR} for a full tutorial on dual decomp.
-The modification to Viterbi decoding is exactly the same as in \cite{Wang:2013:ACL} and \cite{Denero:2011:ACL}. The modification to the beam-search is similar, each time we extend a hypothesis with a new character, depending if the new character is appended to the last word or starting a new word, the corresponding DD penalty is factored into the score for the new hypothesis. 
+The high-level idea is that jointly model both character-sequence and word information can be difficult, so instead we explore the joint search space at inference time to find an output that the two models are most likely to agree.
+Formally, the objective that DD optimizes is:
+\begin{align*}
+   \max_{\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}}  \; P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) \;  \ni \mathbf{y^\textit{c}} = \mathbf{y^\textit{w}}
+\end{align*}
+\noindent where $\mathbf{y^\textit{c}}$ is the output of character-based CRF and $\mathbf{y^\textit{w}}$ is the output of word-based perceptron.
+
+The DD algorithm is an iterative procedure: in each iteration, if the best segmentations provided by the two models do not agree, then the two models will receive penalties for the decisions they made that differ from the other. This penalty exchange is similar to message passing, and as the penalty accumulate over the iterations, the two models are pushed towards agreeing with each other. We give an updated Viterbi decoding algorithm for CRF and a modified beam-search algorithm for perceptron, as well as pseudo-code for DD algorithm in Algorithm~\ref{algo:DD}\footnote{Due to space limitation, we defer to the tutorial of \newcite{Rush:2012:JAIR} for a full introduction of DD.}.

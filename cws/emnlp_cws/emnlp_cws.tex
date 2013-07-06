@@ -14,11 +14,15 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{CJKutf8}
+\usepackage{algorithmic,algorithm,eqparbox,array}
+
 
 %\newcommand\argmaxB[1]{
 %    \underset{#1}{\operatorname{argmax}}
 %}
-\def\argmax{\underset{y \in \mathrm{GEN}(\mathbf{x})}{\operatorname{argmax}}}
+\def\argmax{\underset{\mathbf{y} \in \mathrm{GEN}(\mathbf{x})}{\operatorname{argmax}}}
+\def\argmaxb{\underset{\mathbf{y}}{\operatorname{argmax}}}
+\def\argmaxk{\underset{\mathbf{k'}}{\operatorname{argmax}}}
 
 %\underset{x}{\operatorname{argmax}}
 %\input macros
