@@ -1,17 +1,14 @@
 \section{Results}
 
-Table \ref{tbl:results} shows our empirical results on SIGHAN  2005 dataset. Our dual-decomposition method outperforms both the word-based and character-based baselines  consistently across all four subsets in both F$_1$ and out-of-vocabulary recall (R$_{\mathrm{oov}}$).Our method demonstrating a robustness across domains and segmentation standards regardless of which baseline model was stronger. Of particular note is DD's significant improvement in R$_{\mathrm{oov}}$, which is particularly important for downstream applications such as entity recognition. The DD algorithm is also more consistent (as measured by C$_{\mathrm{onst}}$), which would likely to lead to improvements in applications such as machine translation \cite{Chang:2008:ACL}. 
+Table \ref{tbl:results} shows our empirical results on SIGHAN  2005 dataset. Our dual decomposition method outperforms both the word-based and character-based baselines  consistently across all four subsets in both F$_1$ and \textsc{oov} recall (R$_{\mathrm{oov}}$).Our method demonstrating a robustness across domains and segmentation standards regardless of which baseline model was stronger. Of particular note is DD's significant improvement in R$_{\mathrm{oov}}$, which is particularly important for downstream applications such as entity recognition. The DD algorithm is also more consistent (as measured by C$_{\mathrm{onst}}$), which would likely to lead to improvements in applications such as machine translation \cite{Chang:2008:ACL}. 
 
-In addition, we also test our results on an the earlier SIGHAN 2003 dataset. The improvement over word and char-based baselines remains. 
+In addition, we also test our results on the earlier SIGHAN 2003 dataset. The improvement over word and char-based baselines remains. 
 Table \ref{tbl:comparison} puts our method in the context of earlier systems for CWS. Our method achieves the best reported score on 6 out of 7 datasets.
-%
-%Reformat the table so it fits in a single column. 
-%The OOV rates should be moved out of this table and put in the data description tables in Experiment section Dataset subsection.
 
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
-\begin{small}
+\begin{footnotesize}
 \begin{tabular}{ l | c | c | c | c   }
 \multicolumn{5}{c}{{SIGHAN 2005}} \\
 \hline
@@ -21,15 +18,19 @@ Table \ref{tbl:comparison} puts our method in the context of earlier systems for
 \textit{Z\&C 07}              & 94.6   &  94.5 & 95.1 & 97.2 \\
 \textit{Sun et al. 09}      & -         &  95.2 & 94.6 & 97.3 \\
 \textit{Sun 10}                & 95.2   &  95.2 & \textbf{95.6} &  96.9 \\
-Dual-decomp                       & \textbf{95.4}  & \textbf{95.3} & 94.7 & \textbf{97.4} \\
+Dual Decomp                       & \textbf{95.4}  & \textbf{95.3} & 94.7 & \textbf{97.4} \\
 \hline
 \multicolumn{5}{c}{{SIGHAN 2003}} \\
 \hline
 \textit{Best 03}            &  96.1   & 95.1 &  \multicolumn{1}{c}{94.0} &  \\
 \textit{Peng et al. 04}  & 95.6   &  94.1 &  \multicolumn{1}{c}{92.8} & \\
 \textit{Z\&C 07}             & 96.5  &  94.0 &  \multicolumn{1}{c}{94.6} & \\
-Dual-decomp                     & \textbf{97.1} & \textbf{95.4} &  \multicolumn{1}{c}{\textbf{94.9}} &\\
+Dual Decomp                     & \textbf{97.1} & \textbf{95.4} &  \multicolumn{1}{c}{\textbf{94.9}} &\\
 \end{tabular} 
-\caption{Performance of dual-decomposition (DD) in comparison to past published results on SIGHAN 2003 and 2005 datasets.  Best reported F$_{1}$ score for each dataset is highlighted in bold. \textit{Z\&C 07} refers to \newcite{Zhang:2007:ACL}. \textit{Best 03, 05} are results of the winning systems for each dataset in the respective shared tasks.}\label{tbl:comparison}
-\end{small}
+\caption{Performance of dual decomposition in comparison to past published results on SIGHAN 2003 and 2005 datasets.  Best reported F$_{1}$ score for each dataset is highlighted in bold. \textit{Z\&C 07} refers to \newcite{Zhang:2007:ACL}. \textit{Best 03, 05} are results of the winning systems for each dataset in the respective shared tasks.}\label{tbl:comparison}
+\end{footnotesize}
 \end{table}
+%
+%Reformat the table so it fits in a single column. 
+%The OOV rates should be moved out of this table and put in the data description tables in Experiment section Dataset subsection.
+
