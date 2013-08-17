@@ -17,5 +17,3 @@ Various reports from the SIGHAN participants have suggested that tricks like num
 
 > It converges given one test set but this doesn't constitute a guarantee. It's not a proof.
 We apologize for the confusion, but the optimality guarantee that we were referring to is with respect to the constrained-optimization problem of the joint objective (Rush et al. ACL 2010 outlined a proof for the guarantee); we were not stating that the DD algorithm is guaranteed to give optimal results for the given task. We will clarify this in the final writeup.
-
-
