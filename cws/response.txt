@@ -7,15 +7,15 @@ Statistical significance tests using the paired bootstrap resampling method with
 We will report full details in the final writeup upon acceptance.
 
 > I realise space is at a premium but I think the introduction and sections 2.1 and 2.2 could easily be compressed to make room.
-Great suggestion! We will make our notations more consistent and provide more details of the DD algorithm.
+Great suggestion! We will make our notation more consistent and provide further details on the DD algorithm.
 
 > They provide no analysis of why Sun 10 outperforms their model on the CU set. It would be interesting to see some discussion regarding this point. 
-Sun 2010 did not make their code or system outputs available, therefore it is difficult to obtain a fine-grained comparison of our algorithm with his on the CU set. 
+Sun 2010 did not make their code or system outputs available, so it is difficult to obtain a fine-grained comparison of our algorithm with his on the CU set. 
 However, there are two high-level differences we observe: 1) Both our chracter-based and word-based baseline systems give numbers that are significantly lower (by more than 1% in F1) on this dataset than Sun 2010; although DD algorithm improves upon both baselines, it is bounded by the quality of the underlying systems. 
 2) We did not perform any dataset-specific post-processing in any of our systems since the main focus of the paper is to demonstrate the merits of combining word and character-based systems using the DD algorithm. 
-Various reports from the SIGHAN participants have suggested that tricks like number and date normalization post-processing can lead to significant improvements for particular datasets, which could be a factor for the performance difference. 
+Various reports from the SIGHAN participants have suggested that tricks like number and date normalization post-processing can lead to significant improvements for particular datasets, which could be a factor in the performance difference. 
 
 > It converges given one test set but this doesn't constitute a guarantee. It's not a proof.
-We apologize for the confusion, but the optimality guarantee that we were referring to is with respect to the constrained-optimization problem of the joint objective (Rush et al. ACL 2010 outlined a proof for the guarantee); we were not stating that the DD algorithm is guaranteed to give the optimal results for the respective task. We will clarify it in the final writeup.
+We apologize for the confusion, but the optimality guarantee that we were referring to is with respect to the constrained-optimization problem of the joint objective (Rush et al. ACL 2010 outlined a proof for the guarantee); we were not stating that the DD algorithm is guaranteed to give optimal results for the given task. We will clarify this in the final writeup.
 
 
