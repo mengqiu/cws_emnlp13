@@ -1,0 +1,183 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Andrew}2006]{Andrew:2006:EMNLP}
+Galen Andrew.
+\newblock 2006.
+\newblock A hybrid {M}arkov/semi-{M}arkov conditional random field for sequence
+  segmentation.
+\newblock In {\em Proceedings of EMNLP}.
+
+\bibitem[\protect\citename{Bai \bgroup et al.\egroup }2008]{Bai:2008:IJCNLP}
+Ming-Hong Bai, Keh-Jiann Chen, and Jason~S. Chang.
+\newblock 2008.
+\newblock Improving word alignment by adjusting chinese word segmentation.
+\newblock In {\em Proceedings of the third International Joint Conference on
+  Natural Language Processing (IJCNLP)}.
+
+\bibitem[\protect\citename{Chang \bgroup et al.\egroup }2008]{Chang:2008:ACL}
+Pichuan Chang, Michel Galley, and Chris Manning.
+\newblock 2008.
+\newblock Optimizing chinese word segmentation for machine translation
+  performance.
+\newblock In {\em Proceedings of the ACL Workshop on Statistical Machine
+  Translation}.
+
+\bibitem[\protect\citename{Chen and Liu}1992]{Chen:1992:ACL}
+Keh-Jiann Chen and Shing-Huan Liu.
+\newblock 1992.
+\newblock Word identification for mandarin chinese sentences.
+\newblock In {\em Proceedings of COLING}.
+
+\bibitem[\protect\citename{Collins}2002]{Collins:2002:EMNLP}
+Michael Collins.
+\newblock 2002.
+\newblock Discriminative training methods for hidden markov models: theory and
+  experiments with perceptron algorithms.
+\newblock In {\em Proceedings of EMNLP}.
+
+\bibitem[\protect\citename{De{N}ero and Macherey}2011]{Denero:2011:ACL}
+John De{N}ero and Klaus Macherey.
+\newblock 2011.
+\newblock Model-based aligner combination using dual decomposition.
+\newblock In {\em Proceedings of ACL}.
+
+\bibitem[\protect\citename{Emerson}2005]{Emerson:2005:SIGHAN}
+Thomas Emerson.
+\newblock 2005.
+\newblock The second international {C}hinese word segmentation bakeoff.
+\newblock In {\em Proceedings of the fourth {SIGHAN} workshop on {C}hinese
+  language Processing}.
+
+\bibitem[\protect\citename{Gao \bgroup et al.\egroup }2003]{Gao:2003:ACL}
+Jianfeng Gao, Mu~Li, and Chang-Ning Huang.
+\newblock 2003.
+\newblock Improved source-channel models for {C}hinese word segmentation.
+\newblock In {\em Proceedings of ACL}.
+
+\bibitem[\protect\citename{Koo \bgroup et al.\egroup }2010]{Koo:2010:EMNLP}
+Terry Koo, Alexander~M. Rush, Michael Collins, Tommi Jaakkola, and David
+  Sontag.
+\newblock 2010.
+\newblock Dual decomposition for parsing with non-projective head automata.
+\newblock In {\em Proceedings of EMNLP}.
+
+\bibitem[\protect\citename{Kummerfeld \bgroup et al.\egroup
+  }2013]{Kummerfeld:2013:ACL}
+Jonathan~K. Kummerfeld, Daniel Tse, James~R. Curran, and Dan Klein.
+\newblock 2013.
+\newblock An empirical examination of challenges in chinese parsing.
+\newblock In {\em Proceedings of ACL-Short}.
+
+\bibitem[\protect\citename{Lafferty \bgroup et al.\egroup
+  }2001]{Lafferty:2001:ICML}
+John Lafferty, Andrew McCallum, and Fernando Pereira.
+\newblock 2001.
+\newblock Conditional random fields: Probabilistic models for segmenting and
+  labeling sequence data.
+\newblock In {\em Proceedings of 18th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[\protect\citename{Lin}2009]{Lin:2009:CICLing}
+Dekang Lin.
+\newblock 2009.
+\newblock Combining language modeling and discriminative classification for
+  word segmentation.
+\newblock In {\em Proceedings of the 10th International Conference on
+  Intelligent Text Processing and Computational Linguistics ({CICLing})}.
+
+\bibitem[\protect\citename{Rush and Collins}2012]{Rush:2012:JAIR}
+Alexander~M. Rush and Michael Collins.
+\newblock 2012.
+\newblock A tutorial on dual decomposition and {L}agrangian relaxation for
+  inference in natural language processing.
+\newblock {\em JAIR}, 45:305--362.
+
+\bibitem[\protect\citename{Rush \bgroup et al.\egroup }2010]{Rush:2010:EMNLP}
+Alexander~M. Rush, David Sontag, Michael Collins, and Tommi Jaakkola.
+\newblock 2010.
+\newblock On dual decomposition and linear programming relaxations for natural
+  language processing.
+\newblock In {\em Proceedings of EMNLP}.
+
+\bibitem[\protect\citename{Shi and Wang}2007]{Shi:2007:IJCAI}
+Yanxin Shi and Mengqiu Wang.
+\newblock 2007.
+\newblock A dual-layer crfs based joint decoding method for cascaded
+  segmentation and labeling tasks.
+\newblock In {\em Proceedings of Joint Conferences on Artificial Intelligence
+  (IJCAI)}.
+
+\bibitem[\protect\citename{Sproat and Emerson}2003]{Sproat:2003:SIGHAN}
+Richard Sproat and Thomas Emerson.
+\newblock 2003.
+\newblock The first international {C}hinese word segmentation bakeoff.
+\newblock In {\em Proceedings of the second {SIGHAN} workshop on {C}hinese
+  language Processing}.
+
+\bibitem[\protect\citename{Sun \bgroup et al.\egroup }2009]{Sun:2009:HLT-NAACL}
+Xu~Sun, Yaozhong Zhang, Takuya Matsuzaki, Yoshimasa Tsuruoka, and Jun'ichi
+  Tsujii.
+\newblock 2009.
+\newblock A discriminative latent variable chinese segmenter with hybrid
+  word/character information.
+\newblock In {\em Proceedings of HLT-NAACL}.
+
+\bibitem[\protect\citename{Sun}2010]{Sun:2010:COLING}
+Weiwei Sun.
+\newblock 2010.
+\newblock Word-based and character-basedword segmentation models: Comparison
+  and combination.
+\newblock In {\em Proceedings of COLING}.
+
+\bibitem[\protect\citename{Tseng \bgroup et al.\egroup
+  }2005]{Tseng:2005:SIGHAN}
+Huihsin Tseng, Pichuan Chang, Galen Andrew, Daniel Jurasfky, and Christopher
+  Manning.
+\newblock 2005.
+\newblock A conditional random field word segmenter for sighan bakeoff 2005.
+\newblock In {\em Proceedings of the fourth {SIGHAN} workshop on {C}hinese
+  language Processing}.
+
+\bibitem[\protect\citename{Wang \bgroup et al.\egroup }2006]{Wang:2006:SIGHAN}
+Xinhao Wang, Xiaojun Lin, Dianhai Yu, Hao Tian, and Xihong Wu.
+\newblock 2006.
+\newblock {C}hinese word segmentation with maximum entropy and n-gram language
+  model.
+\newblock In {\em Proceedings of the fifth {SIGHAN} workshop on {C}hinese
+  language Processing}.
+
+\bibitem[\protect\citename{Wang \bgroup et al.\egroup }2010]{Wang:2010:COLING}
+Kun Wang, Chengqing Zong, and Keh-Yih Su.
+\newblock 2010.
+\newblock A character-based joint model for chinese word segmentation.
+\newblock In {\em Proceedings of COLING}.
+
+\bibitem[\protect\citename{Wang \bgroup et al.\egroup }2013]{Wang:2013:ACL}
+Mengqiu Wang, Wanxiang Che, and Christopher~D. Manning.
+\newblock 2013.
+\newblock Joint word alignment and bilingual named entity recognition using
+  dual decomposition.
+\newblock In {\em Proceedings of ACL}.
+
+\bibitem[\protect\citename{Xue}2003]{Xue:2003:IJCLCLP}
+Nianwen Xue.
+\newblock 2003.
+\newblock Chinese word segmentation as character tagging.
+\newblock {\em International Journal of Computational Linguistics and Chinese
+  Language Processing}, pages 29--48.
+
+\bibitem[\protect\citename{Zhang and Clark}2007]{Zhang:2007:ACL}
+Yue Zhang and Stephen Clark.
+\newblock 2007.
+\newblock {C}hinese segmentation with a word-based perceptron algorithm.
+\newblock In {\em Proceedings of ACL}.
+
+\bibitem[\protect\citename{Zhang \bgroup et al.\egroup
+  }2006]{Zhang:2006:HLT-NAACL}
+Ruiqiang Zhang, Genichiro Kikui, and Eiichiro Sumita.
+\newblock 2006.
+\newblock Subword-based tagging by conditional random fields for {C}hinese word
+  segmentation.
+\newblock In {\em Proceedings of HLT-NAACL}.
+
+\end{thebibliography}

@@ -67,19 +67,19 @@ F(\mathbf{y}|\mathbf{x}) =  \argmax{ \left( \alpha \cdot \phi(\mathbf{\mathbf{y}
 %\multicolumn{13}{c}{\large{SIGHAN 2005}} \\
 \multicolumn{1}{c|}{} & \multicolumn{5}{c|}{Academia Sinica} &  \multicolumn{5}{c}{Peking Univ.} \\
 \hline
-\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{Consist}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{Consist} \\ 
+\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{C}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
 Char-based CRF    &  95.2 &   93.6  & 94.4  &  58.9 & 0.064                                               &  94.6             &    95.3 & 94.9  &   77.8   & 0.089    \\
 Word-based Perceptron &  95.8 & \textbf{95.0} & \textbf{95.4}  & \textbf{69.5} & 0.060  &  94.1             & 95.5  & 94.8  &  76.7 & 0.099     \\ 
 Dual-decomp      & \textbf{95.9} & 94.9   & \textbf{95.4}  & {67.7} & \textbf{0.055}            & \textbf{94.8} & \textbf{95.7} & \textbf{95.3}  &  \textbf{78.7} & \textbf{0.086}   \\
 %\cline{2-9}
 \multicolumn{1}{c|}{} &  \multicolumn{5}{c|}{City Univ. of Hong Kong} &  \multicolumn{5}{c}{Microsoft Research}  \\
 \hline
-\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{Consist}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{Consist} \\ 
+\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{C}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
 Char-based CRF                 & 94.7 & 94.0 & 94.3  & \textbf{76.1}                            & 0.065             & 96.4 &              96.6 &             96.5  & 71.3 & 0.074 \\
 Word-based Perceptron    & 94.3 & 94.0 & 94.2  & 71.7                                         & 0.073              &  97.0 &              97.2                & 97.1  & 74.6 & 0.063  \\
 Dual-decomp                   & \textbf{95.0} & \textbf{94.4}  & \textbf{94.7}  & {75.3} & \textbf{0.062} & \textbf{97.3} &  \textbf{97.4} &  \textbf{97.4}  & \textbf{76.0} & \textbf{0.055}  \\
 \end{tabular} 
-\caption{Results on SIGHAN 2005 datasets. \textit{R$_{\mathrm{oov}}$}  denotes \textsc{oov} recall, and \textit{Consist} denotes segmentation consistency. Best number in each column is highlighted in bold.
+\caption{Results on SIGHAN 2005 datasets. \textit{R$_{\mathrm{oov}}$}  denotes \textsc{oov} recall, and \textit{C} denotes segmentation consistency. Best number in each column is highlighted in bold.
 %$\dagger$ and $\ddagger$ denote statistical significance ($p<0.01$) against CRF and perceptron baselines, respectively. 
 }\label{tbl:results}
 \end{small}
@@ -98,6 +98,5 @@ Formally, the objective of DD is:
 \end{align*}
 \noindent where $\mathbf{y^\textit{c}}$ is the output of character-based CRF and $\mathbf{y^\textit{w}}$ is the output of word-based perceptron.
 
-The DD algorithm is an iterative procedure: in each iteration, if the best segmentations provided by the two models do not agree, then the two models will receive penalties for the decisions they made that differ from the other. This penalty exchange is similar to message passing, and as the penalty accumulates over iterations, the two models are pushed towards agreeing with each other. We give an updated Viterbi decoding algorithm for CRF and a modified beam-search algorithm for perceptron, as well as pseudo-code for DD algorithm in Algo.~\ref{algo:DD}\footnote{Due to space limitations, we defer to the tutorial of \newcite{Rush:2012:JAIR} for a full introduction of DD.}.
-
+The DD algorithm is an iterative procedure: in each iteration, if the best segmentations provided by the two models do not agree, then the two models will receive penalties for the decisions they made that differ from the other. This penalty exchange is similar to message passing, and as the penalty accumulates over iterations, the two models are pushed towards agreeing with each other. We give an updated Viterbi decoding algorithm for CRF and a modified beam-search algorithm for perceptron, as well as pseudo-code for the DD algorithm in Algo.~\ref{algo:DD}.\footnote{See \newcite{Rush:2012:JAIR} for a full introduction to DD.}
 
