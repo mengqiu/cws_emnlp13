@@ -31,7 +31,7 @@ F(\mathbf{y}|\mathbf{x}) =  \argmax{ \left( \alpha \cdot \phi(\mathbf{\mathbf{y}
 \STATE $\forall i \in \{1\; \mathrm{to} \; |\mathbf{x}|\} \colon \; \forall k \in \{0,1\} \colon u_{i}(k) = 0$
 \FOR{$t \leftarrow 1$  \textbf{to} $T$}
 \STATE   $\mathbf{y^{c*}} = \argmaxb \; P(\mathbf{y^\textit{c}} | \mathbf{x}) +  \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c})}$ 
-\STATE   $\mathbf{y^{w*}} = \argmax \; F(\mathbf{y^\textit{w}} | \mathbf{x}) -  \sum\limits_{i\in |\mathbf{x}|}{ u_{i}(y_j^\textit{w})}$
+\STATE   $\mathbf{y^{w*}} = \argmax \; F(\mathbf{y^\textit{w}} | \mathbf{x}) -  \sum\limits_{j\in |\mathbf{x}|}{ u_{j}(y_j^\textit{w})}$
 \IF{ $\mathbf{y^{c*}} =  \mathbf{y^{w*}}$ }
 \RETURN $\left(\mathbf{y^{\textit{c}*}},\mathbf{y^{\textit{w}*}}\right)$
 \ENDIF
@@ -93,10 +93,33 @@ Dual decomposition (DD) \cite{Rush:2010:EMNLP} offers an attractive framework fo
 
 The idea is that jointly modelling both character-sequence and word information can be computationally challenging, so instead we can try to find outputs that the two models are most likely to agree on.
 Formally, the objective of DD is:
-\begin{align*}
-   \max_{\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}}  \; P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) \;  \ni \mathbf{y^\textit{c}} = \mathbf{y^\textit{w}}
-\end{align*}
-\noindent where $\mathbf{y^\textit{c}}$ is the output of character-based CRF and $\mathbf{y^\textit{w}}$ is the output of word-based perceptron.
+\begin{align}
+   \max_{\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}}  \; P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) \;  s.t. \; \mathbf{y^\textit{c}} = \mathbf{y^\textit{w}}
+\end{align}
+\noindent where $\mathbf{y^\textit{c}}$ is the output of character-based CRF, $\mathbf{y^\textit{w}}$ is the output of word-based perceptron, 
+and the agreements  are expressed as constraints. \textit{s.t.} is a shorthand for ``such that''.
 
-The DD algorithm is an iterative procedure: in each iteration, if the best segmentations provided by the two models do not agree, then the two models will receive penalties for the decisions they made that differ from the other. This penalty exchange is similar to message passing, and as the penalty accumulates over iterations, the two models are pushed towards agreeing with each other. We give an updated Viterbi decoding algorithm for CRF and a modified beam-search algorithm for perceptron, as well as pseudo-code for the DD algorithm in Algo.~\ref{algo:DD}.\footnote{See \newcite{Rush:2012:JAIR} for a full introduction to DD.}
+Solving this constrained optimization problem directly is difficult. 
+Instead, we take the Lagrangian relaxation of this term as:
+\begin{align}
+& L\left(\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}, \mathbf{U}\right) =  \\ 
+& P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) +  \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c}-y_i^\textit{w})}  \nonumber \label{eq:sub}
+\end{align}
+\noindent where $ \mathbf{U}$ is the set of Lagrangian multipliers that consists of a multiplier $u_i$ at each word position $i$. 
 
+We can rewrite the original objective with the Lagrangian relaxation as:
+\begin{align}
+   \max_{\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}} \min_{\mathbf{U}} \; L\left(\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}, \mathbf{U}\right)
+\end{align}
+
+We can then form the dual of this problem by taking the $\min$ outside of the $\max$, which is an upper bound on the original problem.  
+The dual form can then be decomposed into two sub-components (the two $\max$ problems in Eq.~\ref{eq:sub}), each of which is local with respect to the set of Lagrangian multipliers:
+\begin{align}
+\min_{\mathbf{U}}  \Biggl( & \max_{y^\textit{c}} \left[  P(\mathbf{y^\textit{c}} | \mathbf{x})  + \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c}})  \right] \\ \nonumber
+ +  &  \max_{y^\textit{w}}   \left[  F(\mathbf{y^\textit{w}} | \mathbf{x})  - \sum\limits_{j\in |\mathbf{x}|}{u_{j}(y_j^\textit{w})}  \right] \Biggr)
+\end{align}
+This method is called dual decomposition (DD) \cite{Rush:2010:EMNLP}.
+Similar to previous work \cite{Rush:2012:JAIR}, we solve this DD problem by iteratively updating the sub-gradient as depicted in Algorithm~\ref{algo:DD}.\footnote{See \newcite{Rush:2012:JAIR} for a full introduction to DD.} 
+In each iteration, if the best segmentations provided by the two models do not agree, then the two models will receive penalties for the decisions they made that differ from the other. This penalty exchange is similar to message passing, and as the penalty accumulates over iterations, the two models are pushed towards agreeing with each other. 
+We also give an updated Viterbi decoding algorithm for CRF and a modified beam-search algorithm for perceptron in Algorithm~\ref{algo:DD}.
+$T$ is the maximum number of iterations before early stopping, and $\alpha_t$ is the learning rate at time $t$. We adopt a learning rate update rule from \newcite{Koo:2010:EMNLP} where $\alpha_t$ is defined as ${\frac{1}{N}}$, where $N$ is the number of times we observed a consecutive dual value increase from iteration $1$ to $t$.

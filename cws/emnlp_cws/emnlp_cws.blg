@@ -1,3 +1,46 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: emnlp_cws.aux
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: emnlp_cws.aux
 The style file: naaclhlt2013.bst
 Database file #1: emnlp_cws.bib
+You've used 25 entries,
+            2490 wiz_defined-function locations,
+            682 strings with 9100 characters,
+and the built_in function-call counts, 9214 in all, are:
+= -- 878
+> -- 404
+< -- 1
++ -- 143
+- -- 134
+* -- 606
+:= -- 1491
+add.period$ -- 100
+call.type$ -- 25
+change.case$ -- 167
+chr.to.int$ -- 25
+cite$ -- 25
+duplicate$ -- 451
+empty$ -- 800
+format.name$ -- 165
+if$ -- 1930
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 25
+newline$ -- 153
+num.names$ -- 75
+pop$ -- 257
+preamble$ -- 1
+purify$ -- 192
+quote$ -- 0
+skip$ -- 289
+stack$ -- 0
+substring$ -- 183
+swap$ -- 80
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 200
+warning$ -- 0
+while$ -- 55
+width$ -- 28
+write$ -- 329
