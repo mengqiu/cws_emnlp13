@@ -26,7 +26,7 @@ F(\mathbf{y}|\mathbf{x}) =  \argmax{ \left( \alpha \cdot \phi(\mathbf{\mathbf{y}
 
 \begin{algorithm}[!ht]
 \begin{footnotesize}
-\caption{DD inference algorithm, modified Viterbi and beam-search.}
+\caption{Dual decomposition inference algorithm, and modified Viterbi and beam-search algorithms.}
 \begin{algorithmic}
 \STATE $\forall i \in \{1\; \mathrm{to} \; |\mathbf{x}|\} \colon \; \forall k \in \{0,1\} \colon u_{i}(k) = 0$
 \FOR{$t \leftarrow 1$  \textbf{to} $T$}
@@ -67,14 +67,15 @@ F(\mathbf{y}|\mathbf{x}) =  \argmax{ \left( \alpha \cdot \phi(\mathbf{\mathbf{y}
 %\multicolumn{13}{c}{\large{SIGHAN 2005}} \\
 \multicolumn{1}{c|}{} & \multicolumn{5}{c|}{Academia Sinica} &  \multicolumn{5}{c}{Peking Univ.} \\
 \hline
-\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{C}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
+\multicolumn{1}{c|}{}   & \multicolumn{1}{c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c|}{C}  & \multicolumn{1}{c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
 Char-based CRF    &  95.2 &   93.6  & 94.4  &  58.9 & 0.064                                               &  94.6             &    95.3 & 94.9  &   77.8   & 0.089    \\
 Word-based Perceptron &  95.8 & \textbf{95.0} & \textbf{95.4}  & \textbf{69.5} & 0.060  &  94.1             & 95.5  & 94.8  &  76.7 & 0.099     \\ 
 Dual-decomp      & \textbf{95.9} & 94.9   & \textbf{95.4}  & {67.7} & \textbf{0.055}            & \textbf{94.8} & \textbf{95.7} & \textbf{95.3}  &  \textbf{78.7} & \textbf{0.086}   \\
 %\cline{2-9}
+\multicolumn{1}{c|}{} &  \multicolumn{5}{c|}{} &  \multicolumn{5}{c}{} \\
 \multicolumn{1}{c|}{} &  \multicolumn{5}{c|}{City Univ. of Hong Kong} &  \multicolumn{5}{c}{Microsoft Research}  \\
 \hline
-\multicolumn{1}{c}{}   & \multicolumn{1}{|c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c}{C}  & \multicolumn{1}{|c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
+\multicolumn{1}{c|}{}   & \multicolumn{1}{c}{R} &  \multicolumn{1}{c}{P}     &  \multicolumn{1}{c}{F$_1$}   &    \multicolumn{1}{c}{R$_{\mathrm{oov}}$}   &   \multicolumn{1}{c|}{C}  & \multicolumn{1}{c}{R}  &  \multicolumn{1}{c}{P}   &  \multicolumn{1}{c}{F$_1$}   &   \multicolumn{1}{c}{R$_{\mathrm{oov}}$}  &   \multicolumn{1}{c}{C} \\ 
 Char-based CRF                 & 94.7 & 94.0 & 94.3  & \textbf{76.1}                            & 0.065             & 96.4 &              96.6 &             96.5  & 71.3 & 0.074 \\
 Word-based Perceptron    & 94.3 & 94.0 & 94.2  & 71.7                                         & 0.073              &  97.0 &              97.2                & 97.1  & 74.6 & 0.063  \\
 Dual-decomp                   & \textbf{95.0} & \textbf{94.4}  & \textbf{94.7}  & {75.3} & \textbf{0.062} & \textbf{97.3} &  \textbf{97.4} &  \textbf{97.4}  & \textbf{76.0} & \textbf{0.055}  \\
@@ -103,7 +104,7 @@ Solving this constrained optimization problem directly is difficult.
 Instead, we take the Lagrangian relaxation of this term as:
 \begin{align}
 & L\left(\mathbf{y^\textit{c}}, \mathbf{y^\textit{w}}, \mathbf{U}\right) =  \\ 
-& P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) +  \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c}-y_i^\textit{w})}  \nonumber \label{eq:sub}
+& P(\mathbf{y^\textit{c}} | \mathbf{x}) + F(\mathbf{y^\textit{w}} | \mathbf{x}) +  \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c}-y_i^\textit{w})}  \nonumber
 \end{align}
 \noindent where $ \mathbf{U}$ is the set of Lagrangian multipliers that consists of a multiplier $u_i$ at each word position $i$. 
 
@@ -114,7 +115,7 @@ We can rewrite the original objective with the Lagrangian relaxation as:
 
 We can then form the dual of this problem by taking the $\min$ outside of the $\max$, which is an upper bound on the original problem.  
 The dual form can then be decomposed into two sub-components (the two $\max$ problems in Eq.~\ref{eq:sub}), each of which is local with respect to the set of Lagrangian multipliers:
-\begin{align}
+\begin{align}\label{eq:sub}
 \min_{\mathbf{U}}  \Biggl( & \max_{y^\textit{c}} \left[  P(\mathbf{y^\textit{c}} | \mathbf{x})  + \sum\limits_{i\in |\mathbf{x}|}{u_{i}(y_i^\textit{c}})  \right] \\ \nonumber
  +  &  \max_{y^\textit{w}}   \left[  F(\mathbf{y^\textit{w}} | \mathbf{x})  - \sum\limits_{j\in |\mathbf{x}|}{u_{j}(y_j^\textit{w})}  \right] \Biggr)
 \end{align}

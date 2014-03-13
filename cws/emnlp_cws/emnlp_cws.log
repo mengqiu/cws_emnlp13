@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAR 2014 17:58
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  12 MAR 2014 18:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -768,29 +768,20 @@ Underfull \hbox (badness 4940) in paragraph at lines 12--16
 []\OT1/ptm/m/n/10.95 There are two pri-mary classes of mod-els:
  []
 
-) (./models.tex
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
- [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) (./models.tex [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pd
+ftex.map}
 
 
 
 
 ]
-Underfull \hbox (badness 1072) in paragraph at lines 29--29
-[]\OT1/ptm/b/n/10.95 Algorithm 1 \OT1/ptm/m/n/10.95 DD in-fer-ence al-go-rithm,
- mod-i-fied
- []
-
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
-[2]
-Underfull \vbox (badness 2512) has occurred while \output is active []
-
-)
-(./experiment.tex
+ [2]) (./experiment.tex
 Underfull \hbox (badness 1005) in paragraph at lines 4--5
 \OT1/ptm/m/n/10.95 We con-duct ex-per-i-ments on the SIGHAN 2003
  []
@@ -800,7 +791,7 @@ Underfull \hbox (badness 1163) in paragraph at lines 3--6
 \OT1/ptm/m/n/10.95 of-the-art seg-men-ta-tions that are more ac-cu-rate,
  []
 
-[4] <histogram.png, id=59, 642.4pt x 481.8pt>
+[4] <histogram.png, id=53, 642.4pt x 481.8pt>
 File: histogram.png Graphic file (type png)
  <use histogram.png>
 Package pdftex.def Info: histogram.png used on input line 57.
@@ -815,7 +806,7 @@ Underfull \hbox (badness 2245) in paragraph at lines 126--131
 Here is how much of TeX's memory you used:
  5082 strings out of 493488
  64525 string characters out of 3141326
- 142186 words of memory out of 3000000
+ 143186 words of memory out of 3000000
  8132 multiletter control sequences out of 15000+200000
  51312 words of font info for 128 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -856,7 +847,7 @@ e/2012/texmf-dist/fonts/type1/arphic/gbsnu/gbsnuff.pfb></usr/local/texlive/2012
 /texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on emnlp_cws.pdf (6 pages, 282367 bytes).
+Output written on emnlp_cws.pdf (6 pages, 282285 bytes).
 PDF statistics:
  184 PDF objects out of 1000 (max. 8388607)
  123 compressed objects within 2 object streams
